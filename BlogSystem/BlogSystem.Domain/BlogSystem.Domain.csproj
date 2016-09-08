@@ -58,13 +58,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\ApplicationDbContext.cs" />
-    <Compile Include="Contracts\IApplicationUser.cs" />
+    <Compile Include="Contracts\Entities\IComment.cs" />
+    <Compile Include="Contracts\Entities\IPost.cs" />
+    <Compile Include="Contracts\IApplicationDbContext.cs" />
+    <Compile Include="Contracts\Entities\IApplicationUser.cs" />
     <Compile Include="Contracts\IDeletable.cs" />
     <Compile Include="Models\Abstract\DeletableEntity.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Concrete\Abstract\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
