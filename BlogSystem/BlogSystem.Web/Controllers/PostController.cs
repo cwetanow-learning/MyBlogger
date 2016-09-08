@@ -1,4 +1,5 @@
 ﻿using BlogSystem.Domain.Contracts;
+using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace BlogSystem.Web.Controllers
                 .OrderByDescending(p => p.Rating)
                 .Take(GlobalConstants.HomePageTopPostsCount);
 
-            return this.PartialView(topPosts);
+            return this.AllPosts(topPosts);
         }
 
         public PartialViewResult LatestPosts()
@@ -32,7 +33,12 @@ namespace BlogSystem.Web.Controllers
                 .OrderByDescending(p => p.Date)
                 .Take(GlobalConstants.HomePageTopPostsCount);
 
-            return this.PartialView("_TopPostsPartial",latestPosts);
+            return this.AllPosts(latestPosts);
+        }
+
+        public PartialViewResult AllPosts(IEnumerable<Post> posts)
+        {
+            return this.PartialView("_TopPostsPartial", posts);
         }
     }
 }

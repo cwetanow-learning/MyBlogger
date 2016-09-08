@@ -9,7 +9,7 @@ using BlogSystem.Domain.Concrete.Abstract;
 
 namespace BlogSystem.Domain.Concrete
 {
-    class PostRepository : BaseRepository, IPostRepository
+    public class PostRepository : BaseRepository, IPostRepository
     {
         public IEnumerable<Post> Posts
         {

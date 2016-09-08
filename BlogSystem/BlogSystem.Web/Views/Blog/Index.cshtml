@@ -1,0 +1,11 @@
+﻿@using BlogSystem.Domain.Models
+@model IEnumerable<Post>
+
+@{
+    ViewBag.Title = "My posts";
+}
+
+<div class="col-md-6">
+    <h2>Latest posts</h2>
+    @Html.Action("AllPosts", new { controller = "Post", posts = Model });
+</div>

@@ -16,6 +16,9 @@
                 <li>
                     <span class="glyphicon glyphicon-star"></span> Rating: @Model.Rating
                 </li>
+                <li>
+                    @Html.ActionLink("Read", "PostView", new { controller = "Post", id = Model.PostId })
+                </li>
             </ul>
         </div>
     </div>
