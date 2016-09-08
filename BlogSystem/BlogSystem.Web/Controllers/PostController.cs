@@ -32,7 +32,7 @@ namespace BlogSystem.Web.Controllers
                 .OrderByDescending(p => p.Date)
                 .Take(GlobalConstants.HomePageTopPostsCount);
 
-            return this.PartialView(latestPosts);
+            return this.PartialView("_TopPostsPartial",latestPosts);
         }
     }
 }

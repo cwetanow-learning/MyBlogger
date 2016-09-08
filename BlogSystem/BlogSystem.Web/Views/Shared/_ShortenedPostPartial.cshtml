@@ -1,0 +1,22 @@
+﻿@model BlogSystem.Domain.Models.Post
+
+<div class="well">
+    <div class="media">
+        <div class="media-body">
+            <h4 class="media-heading">@Model.Title</h4>
+            <p class="text-right">By Francisco</p>
+            <p>
+                @Model.Subtitle
+            </p>
+            <ul class="list-inline list-unstyled">
+                <li><span><i class="glyphicon glyphicon-calendar"></i> @Model.Date</span></li>
+                <li>|</li>
+                <span><i class="glyphicon glyphicon-comment"></i>@Model.Comments.Count()</span>
+                <li>|</li>
+                <li>
+                    <span class="glyphicon glyphicon-star"></span> Rating: @Model.Rating
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
