@@ -13,15 +13,15 @@ namespace BlogSystem.Domain.Models
 {
     public class ApplicationUser : IdentityUser, IApplicationUser
     {
-        public ApplicationUser():base()
+        public ApplicationUser() : base()
         {
-            this.Comments = new List<Comment>();
-            this.Posts = new List<Post>();
+            this.Comments = new HashSet<Comment>();
+            this.Posts = new HashSet<Post>();
         }
 
-        public IEnumerable<IComment> Comments
+        public virtual IEnumerable<Comment> Comments
         {
-            get; 
+            get;
         }
 
         public string Name
@@ -29,7 +29,7 @@ namespace BlogSystem.Domain.Models
             get; set;
         }
 
-        public IEnumerable<IPost> Posts
+        public virtual IEnumerable<Post> Posts
         {
             get;
         }

@@ -1,4 +1,5 @@
 ﻿using BlogSystem.Domain.Contracts.Entities;
+using BlogSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace BlogSystem.Domain.Contracts
     {
         string Name { get; set; }
 
-        IEnumerable<IPost> Posts { get; }
+        IEnumerable<Post> Posts { get; }
 
-        IEnumerable<IComment> Comments { get; }
+        IEnumerable<Comment> Comments { get; }
     }
 }

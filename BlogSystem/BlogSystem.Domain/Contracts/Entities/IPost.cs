@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlogSystem.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,10 +19,10 @@ namespace BlogSystem.Domain.Contracts.Entities
 
         DateTime Date { get; set; }
 
-        IEnumerable<IComment> Comments { get; }
+        IEnumerable<Comment> Comments { get; }
 
         int Rating { get; set; }
 
-        IApplicationUser Author { get; set; }
+        ApplicationUser Author { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlogSystem.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,10 @@ namespace BlogSystem.Domain.Contracts.Entities
 
         DateTime Date { get; set; }
 
-        IApplicationUser Author { get; set; }
+        ApplicationUser Author { get; set; }
 
         string CommentText { get; set; }
 
-        IPost Post { get; set; }
+        Post Post { get; set; }
     }
 }

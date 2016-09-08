@@ -1,22 +1,12 @@
 ﻿using BlogSystem.Domain.Contracts.Entities;
 using BlogSystem.Domain.Models.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlogSystem.Domain.Contracts;
 using System.ComponentModel.DataAnnotations;
 
 namespace BlogSystem.Domain.Models
 {
     public class Comment : DeletableEntity, IComment
     {
-        public IApplicationUser Author
-        {
-            get; set;
-        }
-
         [Key]
         public int CommentId
         {
@@ -33,7 +23,12 @@ namespace BlogSystem.Domain.Models
             get; set;
         }
 
-        public IPost Post
+        public Post Post
+        {
+            get; set;
+        }
+
+        public virtual ApplicationUser Author
         {
             get; set;
         }
