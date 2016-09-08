@@ -13,9 +13,15 @@ namespace BlogSystem.Domain.Models
 {
     public class ApplicationUser : IdentityUser, IApplicationUser
     {
+        public ApplicationUser():base()
+        {
+            this.Comments = new List<Comment>();
+            this.Posts = new List<Post>();
+        }
+
         public IEnumerable<IComment> Comments
         {
-            get;
+            get; 
         }
 
         public string Name

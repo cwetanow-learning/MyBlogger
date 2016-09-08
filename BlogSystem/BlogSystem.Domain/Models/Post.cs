@@ -9,6 +9,11 @@ namespace BlogSystem.Domain.Models
 {
     public class Post : DeletableEntity, IPost
     {
+        public Post()
+        {
+            this.Comments = new List<Comment>();
+        }
+
         public IApplicationUser Author
         {
             get; set;
