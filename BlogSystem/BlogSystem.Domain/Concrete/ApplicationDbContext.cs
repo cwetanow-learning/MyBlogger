@@ -1,14 +1,10 @@
-﻿using BlogSystem.Domain.Models;
+﻿using BlogSystem.Domain.Contracts;
+using BlogSystem.Domain.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlogSystem.Domain.Concrete
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

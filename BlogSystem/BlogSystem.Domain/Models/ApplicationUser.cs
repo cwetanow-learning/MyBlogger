@@ -7,14 +7,25 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using BlogSystem.Domain.Contracts.Entities;
 
 namespace BlogSystem.Domain.Models
 {
     public class ApplicationUser : IdentityUser, IApplicationUser
     {
+        public IEnumerable<IComment> Comments
+        {
+            get;
+        }
+
         public string Name
         {
             get; set;
+        }
+
+        public IEnumerable<IPost> Posts
+        {
+            get;
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

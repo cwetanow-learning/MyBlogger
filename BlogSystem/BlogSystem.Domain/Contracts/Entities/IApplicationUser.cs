@@ -13,6 +13,6 @@ namespace BlogSystem.Domain.Contracts
 
         IEnumerable<IPost> Posts { get; }
 
-        IEnumerable<IComment> Comments { get; set; }
+        IEnumerable<IComment> Comments { get; }
     }
 }
