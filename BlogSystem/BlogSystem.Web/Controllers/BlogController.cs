@@ -40,9 +40,15 @@ namespace BlogSystem.Web.Controllers
             return this.View(post);
         }
 
+        [HttpPost]
+        public ActionResult Edit(Post post)
+        {
+
+        }
+
         public ViewResult Create()
         {
-            return this.View("Edit",new Post());
+            return this.View("Edit", new Post());
         }
     }
 }
