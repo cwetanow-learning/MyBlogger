@@ -16,6 +16,6 @@ namespace BlogSystem.Domain.Contracts.Entities
 
         string CommentText { get; set; }
 
-        int PostId { get; set; }
+        IPost Post { get; set; }
     }
 }
