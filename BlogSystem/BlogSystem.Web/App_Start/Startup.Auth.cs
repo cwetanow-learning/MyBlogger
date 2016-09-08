@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using BlogSystem.Web.Models;
+using BlogSystem.Domain.Concrete;
+using BlogSystem.Domain.Models;
 
 namespace BlogSystem.Web
 {
