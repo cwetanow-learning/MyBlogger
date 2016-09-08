@@ -1,6 +1,7 @@
 ﻿using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace BlogSystem.Web.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private IPostRepository repository;
@@ -27,8 +29,8 @@ namespace BlogSystem.Web.Controllers
 
         private void FilterPosts()
         {
-            var userId = this.User.Identity.GetUserId();
-            this.posts = this.repository.Posts.Where(p => p.Author.Id == userId);
+            var user = System.Threading.Thread.CurrentPrincipal.Identity.GetUserId();
+            this.posts = this.repository.Posts.Where(p => p.Author.Id == user);
         }
     }
 }

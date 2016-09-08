@@ -152,7 +152,7 @@ namespace BlogSystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Name, Email = model.Email, Name=model.Name };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name=model.Name };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
