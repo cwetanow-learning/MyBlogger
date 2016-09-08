@@ -1,2 +1,11 @@
 ﻿@model BlogSystem.Domain.Models.Comment
 
+<div class="media">
+    <div class="media-body">
+        <h4 class="media-heading">
+            @Model.Author.Name
+            <small>@String.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</small>
+        </h4>
+        @Model.CommentText
+    </div>
+</div>
