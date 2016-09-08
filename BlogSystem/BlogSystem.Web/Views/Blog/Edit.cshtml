@@ -1,0 +1,23 @@
+﻿@model BlogSystem.Domain.Models.Post
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edit @Model.Title</h3>
+    </div>
+    @using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="panel-body">
+            @Html.EditorForModel()
+
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel and return to List", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
+

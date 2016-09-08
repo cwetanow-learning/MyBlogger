@@ -27,17 +27,22 @@ namespace BlogSystem.Web.Controllers
             return this.View(this.posts);
         }
 
-        public ViewResult PostView(int postId)
-        {
-            var post = this.posts.FirstOrDefault(p => p.PostId == postId);
-
-            return this.View();
-        }
-
         private void FilterPosts()
         {
             var user = System.Threading.Thread.CurrentPrincipal.Identity.GetUserId();
             this.posts = this.repository.Posts.Where(p => p.Author.Id == user);
+        }
+
+        public ViewResult Edit(int postId)
+        {
+            var post = this.posts.FirstOrDefault(p => p.PostId == postId);
+
+            return this.View(post);
+        }
+
+        public ViewResult Create()
+        {
+            return this.View("Edit",new Post());
         }
     }
 }

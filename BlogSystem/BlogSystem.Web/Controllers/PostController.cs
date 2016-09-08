@@ -40,5 +40,12 @@ namespace BlogSystem.Web.Controllers
         {
             return this.PartialView("_TopPostsPartial", posts);
         }
+
+        public ViewResult PostView(int postId)
+        {
+            var post = this.postRepository.Posts.FirstOrDefault(p => p.PostId == postId);
+
+            return this.View();
+        }
     }
 }

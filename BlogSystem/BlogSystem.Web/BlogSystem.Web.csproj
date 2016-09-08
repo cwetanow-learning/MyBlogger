@@ -292,12 +292,13 @@
     <Content Include="Views\Shared\_TopPostsPartial.cshtml" />
     <Content Include="Views\Shared\_ShortenedPostPartial.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Blog\PostView.cshtml" />
+    <Content Include="Views\Post\PostView.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Comment.cshtml" />
+    <Content Include="Views\Blog\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -3,7 +3,9 @@
 <div class="well">
     <div class="media">
         <div class="media-body">
-            <h4 class="media-heading">@Model.Title</h4>
+            <h4 class="media-heading">
+                @Html.ActionLink(Model.Title, "PostView", new { controller = "Post", postId = Model.PostId })
+            </h4>
             <p class="text-right">By Francisco</p>
             <p>
                 @Model.Subtitle
@@ -11,13 +13,10 @@
             <ul class="list-inline list-unstyled">
                 <li><span><i class="glyphicon glyphicon-calendar"></i> @Model.Date</span></li>
                 <li>|</li>
-               <li> <span><i class="glyphicon glyphicon-comment"></i>@Model.Comments.Count()</span></li>
+                <li> <span><i class="glyphicon glyphicon-comment"></i>@Model.Comments.Count()</span></li>
                 <li>|</li>
                 <li>
                     <span class="glyphicon glyphicon-star"></span> Rating: @Model.Rating
-                </li>
-                <li>
-                    @Html.ActionLink("Read", "PostView", new { controller = "Post", id = Model.PostId })
                 </li>
             </ul>
         </div>
