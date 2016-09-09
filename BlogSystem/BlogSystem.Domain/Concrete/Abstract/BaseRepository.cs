@@ -4,6 +4,11 @@ namespace BlogSystem.Domain.Concrete.Abstract
 {
     public abstract class BaseRepository
     {
-        protected IApplicationDbContext context = new ApplicationDbContext();
+        protected ApplicationDbContext context = new ApplicationDbContext();
+
+        protected void SaveChanges()
+        {
+            this.context.SaveChanges();
+        }
     }
 }

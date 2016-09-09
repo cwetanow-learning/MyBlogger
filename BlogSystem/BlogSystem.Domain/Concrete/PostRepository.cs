@@ -18,5 +18,26 @@ namespace BlogSystem.Domain.Concrete
                 return this.context.Posts;
             }
         }
+
+        public void SavePost(Post post)
+        {
+            if (post.PostId == 0)
+            {
+                this.context.Posts.Add(post);
+            }
+            else
+            {
+                var newPost = this.context.Posts.Find(post.PostId);
+                if (newPost != null)
+                {
+                    newPost.Title = post.Title;
+                    newPost.Text = post.Text;
+                    newPost.Subtitle = post.Subtitle;
+                    newPost.Date = post.Date;
+                }
+            }
+
+            this.SaveChanges();
+        }
     }
 }
