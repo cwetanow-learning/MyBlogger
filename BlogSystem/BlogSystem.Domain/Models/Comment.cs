@@ -23,12 +23,12 @@ namespace BlogSystem.Domain.Models
             get; set;
         }
 
-        public Post Post
+        public virtual ApplicationUser Author
         {
             get; set;
         }
-
-        public virtual ApplicationUser Author
+        
+        public Post Post
         {
             get; set;
         }

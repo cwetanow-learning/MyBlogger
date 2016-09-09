@@ -19,7 +19,7 @@ namespace BlogSystem.Domain.Contracts.Entities
 
         DateTime Date { get; set; }
 
-        IEnumerable<Comment> Comments { get; }
+        ICollection<Comment> Comments { get; }
 
         int Rating { get; set; }
 

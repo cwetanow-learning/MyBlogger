@@ -15,12 +15,12 @@ namespace BlogSystem.Domain.Models
             this.Comments = new HashSet<Comment>();
         }
 
-        public ApplicationUser Author
+        public virtual ApplicationUser Author
         {
             get; set;
         }
 
-        public virtual IEnumerable<Comment> Comments
+        public virtual ICollection<Comment> Comments
         {
             get;
         }

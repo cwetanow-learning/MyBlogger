@@ -1,4 +1,5 @@
-﻿using BlogSystem.Domain.Contracts;
+﻿using BlogSystem.Domain.Concrete;
+using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using Microsoft.AspNet.Identity;
@@ -49,11 +50,9 @@ namespace BlogSystem.Web.Controllers
 
         public ViewResult Index()
         {
-            var id = this.CurrentUser.Id;
-            var posts = this.repository.Posts;
-            var o = posts.Where(p => p.Author.Id == id);
-            // var posts = this.repository.Posts.Where(p => p.Author.Id == this.CurrentUser.Id);
-            return this.View(o);
+            var posts = this.repository.Posts.FirstOrDefault(p => p.Author.Id == this.CurrentUser.Id);
+
+            return this.View(posts);
         }
 
         public ViewResult Edit(int postId)

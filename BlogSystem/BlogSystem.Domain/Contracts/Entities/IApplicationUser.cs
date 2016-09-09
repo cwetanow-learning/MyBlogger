@@ -12,8 +12,8 @@ namespace BlogSystem.Domain.Contracts
     {
         string Name { get; set; }
 
-        IEnumerable<Post> Posts { get; }
+        ICollection<Post> Posts { get; }
 
-        IEnumerable<Comment> Comments { get; }
+        ICollection<Comment> Comments { get; }
     }
 }

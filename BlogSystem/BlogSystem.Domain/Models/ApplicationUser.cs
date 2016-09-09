@@ -19,7 +19,7 @@ namespace BlogSystem.Domain.Models
             this.Posts = new HashSet<Post>();
         }
 
-        public virtual IEnumerable<Comment> Comments
+        public virtual ICollection<Comment> Comments
         {
             get;
         }
@@ -29,7 +29,7 @@ namespace BlogSystem.Domain.Models
             get; set;
         }
 
-        public virtual IEnumerable<Post> Posts
+        public virtual ICollection<Post> Posts
         {
             get;
         }

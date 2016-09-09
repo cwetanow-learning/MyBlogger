@@ -38,7 +38,9 @@ namespace BlogSystem.Domain.Concrete
 
             if (post.PostId == 0)
             {
-                this.context.Posts.Add(post);
+                var newPost = this.context.Posts.Create();
+                this.context.Posts.Add(newPost);
+                this.context.Entry(newPost).CurrentValues.SetValues(post);
             }
             else
             {
