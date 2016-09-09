@@ -113,7 +113,7 @@ namespace BlogSystem.Tests.Web.PostControllerTests
 
             var controller = new PostController(mockedRepository.Object);
 
-            var result = controller.TopPosts().Model as IEnumerable<IPost>;
+            var result = controller.LatestPosts().Model as IEnumerable<IPost>;
 
             var expected = posts.Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Rating)
