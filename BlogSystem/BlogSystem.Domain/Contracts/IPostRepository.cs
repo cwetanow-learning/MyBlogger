@@ -1,4 +1,5 @@
-﻿using BlogSystem.Domain.Models;
+﻿using BlogSystem.Domain.Contracts.Entities;
+using BlogSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace BlogSystem.Domain.Contracts
     public interface IPostRepository
     {
         IEnumerable<Post> Posts { get;  }
+
+        void SavePost(Post post);
     }
 }
