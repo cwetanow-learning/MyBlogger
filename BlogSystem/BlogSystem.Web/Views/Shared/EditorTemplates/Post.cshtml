@@ -1,10 +1,10 @@
 ﻿@model BlogSystem.Domain.Models.Post
+
 @Html.HiddenFor(m => m.PostId)
 <div class="form-group">
     <label>
         Title
     </label>
-
     @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control" })
 
 </div>
