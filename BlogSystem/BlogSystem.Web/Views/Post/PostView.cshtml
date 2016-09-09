@@ -12,6 +12,12 @@
         <!-- Blog Post -->
         <!-- Title -->
         <h1>@Model.Title</h1>
+        @if (Model.Author.Name.Equals(this.User.Identity.Name))
+        {
+            <button class="btn btn-danger btn-xs pull-right" data-title="Delete" data-toggle="modal" data-target="#delete">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        }
 
         <!-- Author -->
         <p class="lead">
@@ -19,7 +25,6 @@
         </p>
 
         <hr>
-
         <!-- Date/Time -->
         <p><span class="glyphicon glyphicon-time"></span> @String.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</p>
 

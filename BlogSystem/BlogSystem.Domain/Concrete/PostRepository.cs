@@ -23,6 +23,14 @@ namespace BlogSystem.Domain.Concrete
             }
         }
 
+        public void ChangeRating(int postId, int value)
+        {
+            var post = this.context.Posts.Find(postId);
+            post.Rating += value;
+
+            this.SaveChanges();
+        }
+
         public Post DeletePost(Post post)
         {
             var postToDelete = this.Posts.FirstOrDefault(p => p.PostId == post.PostId);
