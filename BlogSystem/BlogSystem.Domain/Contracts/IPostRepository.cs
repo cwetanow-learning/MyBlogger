@@ -14,7 +14,7 @@ namespace BlogSystem.Domain.Contracts
 
         void SavePost(Post post);
 
-        Post DeletePost(Post post);
+        Post DeletePost(int postId);
 
         void ChangeRating(int postId, int value);
     }

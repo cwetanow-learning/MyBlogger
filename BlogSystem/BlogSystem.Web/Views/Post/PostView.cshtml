@@ -14,9 +14,8 @@
         <h1>@Model.Title</h1>
         @if (Model.Author.Name.Equals(this.User.Identity.Name))
         {
-            <button class="btn btn-danger btn-xs pull-right" data-title="Delete" data-toggle="modal" data-target="#delete">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button>
+            @Html.ActionLink(" ", "Delete", new { controller = "Blog", postId = Model.PostId }, new { @class = "pull-right glyphicon glyphicon-trash" })
+
         }
 
         <!-- Author -->

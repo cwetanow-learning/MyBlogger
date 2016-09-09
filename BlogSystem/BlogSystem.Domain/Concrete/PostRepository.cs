@@ -31,9 +31,10 @@ namespace BlogSystem.Domain.Concrete
             this.SaveChanges();
         }
 
-        public Post DeletePost(Post post)
+        public Post DeletePost(int postId)
         {
-            var postToDelete = this.Posts.FirstOrDefault(p => p.PostId == post.PostId);
+            var postToDelete = this.Posts.FirstOrDefault(p => p.PostId == postId);
+
             if (postToDelete != null)
             {
                 postToDelete.IsDeleted = true;

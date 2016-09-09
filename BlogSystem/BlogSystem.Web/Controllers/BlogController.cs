@@ -50,14 +50,14 @@ namespace BlogSystem.Web.Controllers
 
         public ViewResult Index()
         {
-            var posts = this.repository.Posts.Where(p => p.Author.Id == this.CurrentUser.Id);
-           
+            var posts = this.repository.Posts.Where(p => p.Author.Id == this.CurrentUser.Id && !p.IsDeleted);
+
             return this.View(posts);
         }
 
         public ViewResult Edit(int postId)
         {
-            var post = this.repository.Posts.FirstOrDefault(p => p.PostId == postId);
+            var post = this.repository.Posts.FirstOrDefault(p => p.PostId == postId && !p.IsDeleted);
 
             return this.View(post);
         }
@@ -85,6 +85,13 @@ namespace BlogSystem.Web.Controllers
         public ViewResult Create()
         {
             return this.View("Edit", new Post());
+        }
+
+        public ActionResult Delete(int postId)
+        {
+            this.repository.DeletePost(postId);
+
+            return this.RedirectToAction("Index");
         }
 
         private string GetCurrentUserId()
