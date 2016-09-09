@@ -1,4 +1,5 @@
 ﻿using BlogSystem.Domain.Models;
+using BlogSystem.Domain.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlogSystem.Domain.Contracts.Entities
 {
-    public interface IPost
+    public interface IPost : IDeletable
     {
         int PostId { get; set; }
 

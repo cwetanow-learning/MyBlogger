@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlogSystem.Domain.Contracts.Entities
 {
-    public interface IComment
+    public interface IComment : IDeletable
     {
         int CommentId { get; set; }
 
