@@ -19,6 +19,19 @@ namespace BlogSystem.Domain.Concrete
             }
         }
 
+        public Post DeletePost(Post post)
+        {
+            var postToDelete = this.Posts.FirstOrDefault(p => p.PostId == post.PostId);
+            if (postToDelete != null)
+            {
+                postToDelete.IsDeleted = true;
+
+                this.SaveChanges();
+            }
+
+            return postToDelete;
+        }
+
         public void SavePost(Post post)
         {
             post.Author = this.GetUserById(post.Author.Id);

@@ -52,7 +52,7 @@ namespace BlogSystem.Web.Controllers
             var id = this.CurrentUser.Id;
             var posts = this.repository.Posts;
             var o = posts.Where(p => p.Author.Id == id);
-           // var posts = this.repository.Posts.Where(p => p.Author.Id == this.CurrentUser.Id);
+            // var posts = this.repository.Posts.Where(p => p.Author.Id == this.CurrentUser.Id);
             return this.View(o);
         }
 
