@@ -45,7 +45,7 @@ namespace BlogSystem.Web.Controllers
         {
             var post = this.postRepository.Posts.FirstOrDefault(p => p.PostId == postId);
 
-            return this.View();
+            return this.View(post);
         }
     }
 }
