@@ -21,7 +21,9 @@ namespace BlogSystem.Web.Controllers
         public PartialViewResult TopPosts()
         {
             var topPosts = this.postRepository.Posts
+                .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Rating)
+                .ThenByDescending(p => p.Date)
                 .Take(GlobalConstants.HomePageTopPostsCount);
 
             return this.AllPosts(topPosts);
@@ -30,6 +32,7 @@ namespace BlogSystem.Web.Controllers
         public PartialViewResult LatestPosts()
         {
             var latestPosts = this.postRepository.Posts
+                .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Date)
                 .Take(GlobalConstants.HomePageTopPostsCount);
 
