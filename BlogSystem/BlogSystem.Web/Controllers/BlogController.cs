@@ -50,7 +50,7 @@ namespace BlogSystem.Web.Controllers
 
         public ViewResult Index()
         {
-            var posts = this.repository.Posts.FirstOrDefault(p => p.Author.Id == this.CurrentUser.Id);
+            var posts = this.repository.Posts.Where(p => p.Author.Id == this.CurrentUser.Id);
 
             return this.View(posts);
         }

@@ -11,6 +11,7 @@ namespace BlogSystem.Domain.Concrete
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public IDbSet<Comment> Comments

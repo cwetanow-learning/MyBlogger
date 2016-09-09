@@ -9,5 +9,7 @@ namespace BlogSystem.Domain.Utils
     public static class GlobalConstants
     {
         public static int HomePageTopPostsCount = 5;
+
+        public static int IdOfEntityNotInDB = 0;
     }
 }

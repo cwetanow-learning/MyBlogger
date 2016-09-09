@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Concrete.Abstract;
+using BlogSystem.Domain.Utils;
+using System.Data.Entity;
 
 namespace BlogSystem.Domain.Concrete
 {
@@ -15,7 +17,9 @@ namespace BlogSystem.Domain.Concrete
         {
             get
             {
-                return this.context.Posts;
+                return this.context.Posts
+                    .Include(x => x.Comments)
+                    .Include(x => x.Author);
             }
         }
 
@@ -36,21 +40,29 @@ namespace BlogSystem.Domain.Concrete
         {
             post.Author = this.GetUserById(post.Author.Id);
 
-            if (post.PostId == 0)
+            if (post.PostId == GlobalConstants.IdOfEntityNotInDB)
             {
-                var newPost = this.context.Posts.Create();
-                this.context.Posts.Add(newPost);
-                this.context.Entry(newPost).CurrentValues.SetValues(post);
+                //  var newPost = this.context.Posts.Create();
+                this.context.Posts.Add(post);
+
+                //    this.context.Entry(newPost).CurrentValues.SetValues(post);
+
+                //  var b = this.context.Entry(newPost);
             }
             else
             {
-                var newPost = this.context.Posts.Find(post.PostId);
-                if (newPost != null)
+                var postToEdit = this.context.Posts.Find(post.PostId);
+
+                if (postToEdit != null)
                 {
-                    newPost.Title = post.Title;
-                    newPost.Text = post.Text;
-                    newPost.Subtitle = post.Subtitle;
-                    newPost.Date = post.Date;
+                    postToEdit.Title = post.Title;
+                    postToEdit.Text = post.Text;
+                    postToEdit.Subtitle = post.Subtitle;
+                    postToEdit.Date = post.Date;
+
+                    this.context.Entry(postToEdit).State = System.Data.Entity.EntityState.Modified;
+                    this.context.Entry(postToEdit).Reference(t => t.Author).Load();
+                    this.context.Entry(postToEdit).Reference(t => t.Comments).Load();
                 }
             }
 
