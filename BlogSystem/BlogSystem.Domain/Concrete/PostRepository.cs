@@ -21,6 +21,8 @@ namespace BlogSystem.Domain.Concrete
 
         public void SavePost(Post post)
         {
+            post.Author = this.GetUserById(post.Author.Id);
+
             if (post.PostId == 0)
             {
                 this.context.Posts.Add(post);

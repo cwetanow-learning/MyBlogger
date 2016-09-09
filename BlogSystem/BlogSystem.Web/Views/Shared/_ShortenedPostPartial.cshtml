@@ -6,7 +6,7 @@
             <h4 class="media-heading">
                 @Html.ActionLink(Model.Title, "PostView", new { controller = "Post", postId = Model.PostId })
             </h4>
-            <p class="text-right">By Francisco</p>
+            <p class="text-right">By @(Model.Author == null ? "Anonymous" : Model.Author.UserName)</p>
             <p>
                 @Model.Subtitle
             </p>

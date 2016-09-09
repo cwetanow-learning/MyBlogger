@@ -8,7 +8,7 @@
     <div class="panel-heading">
         <h3>Edit @Model.Title</h3>
     </div>
-    @using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Edit", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="panel-body">
             @Html.EditorForModel()

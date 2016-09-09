@@ -15,25 +15,50 @@ namespace BlogSystem.Web.Controllers
     public class BlogController : Controller
     {
         private IPostRepository repository;
-        private IEnumerable<Post> posts;
         private ApplicationUser currentUser;
+        private ApplicationUserManager userManager;
 
         public BlogController(IPostRepository repo)
         {
             this.repository = repo;
+        }
 
-            this.currentUser = this.GetUser();
-            this.FilterPosts();
+        public ApplicationUser CurrentUser
+        {
+            get
+            {
+                return this.currentUser ?? this.UserManager.FindById(this.GetCurrentUserId());
+            }
+            private set
+            {
+                this.currentUser = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                this.userManager = value;
+            }
         }
 
         public ViewResult Index()
         {
-            return this.View(this.posts);
+            var id = this.CurrentUser.Id;
+            var posts = this.repository.Posts;
+            var o = posts.Where(p => p.Author.Id == id);
+           // var posts = this.repository.Posts.Where(p => p.Author.Id == this.CurrentUser.Id);
+            return this.View(o);
         }
 
         public ViewResult Edit(int postId)
         {
-            var post = this.posts.FirstOrDefault(p => p.PostId == postId);
+            var post = this.repository.Posts.FirstOrDefault(p => p.PostId == postId);
 
             return this.View(post);
         }
@@ -44,7 +69,8 @@ namespace BlogSystem.Web.Controllers
             if (ModelState.IsValid)
             {
                 post.Date = DateHelper.GetCurrentTime();
-                post.Author = this.currentUser;
+                var authorId = this.CurrentUser.Id;
+                post.Author = new ApplicationUser { Id = authorId };
 
                 this.repository.SavePost(post);
                 this.TempData["message"] = $"{post.Text} has been saved !";
@@ -62,19 +88,9 @@ namespace BlogSystem.Web.Controllers
             return this.View("Edit", new Post());
         }
 
-        private ApplicationUser GetUser()
+        private string GetCurrentUserId()
         {
-            var manager = this.HttpContext.GetOwinContext().Get<ApplicationUserManager>();
-            var userId = System.Threading.Thread.CurrentPrincipal.Identity.GetUserId();
-
-            var user = manager.FindById(userId);
-
-            return user;
-        }
-
-        private void FilterPosts()
-        {
-            this.posts = this.repository.Posts.Where(p => p.Author.Id == this.currentUser.Id);
+            return System.Threading.Thread.CurrentPrincipal.Identity.GetUserId();
         }
     }
 }
