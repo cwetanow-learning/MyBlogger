@@ -8,12 +8,13 @@ using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Concrete.Abstract;
 using BlogSystem.Domain.Utils;
 using System.Data.Entity;
+using BlogSystem.Domain.Contracts.Entities;
 
 namespace BlogSystem.Domain.Concrete
 {
     public class PostRepository : BaseRepository, IPostRepository
     {
-        public IEnumerable<Post> Posts
+        public IEnumerable<IPost> Posts
         {
             get
             {
@@ -31,7 +32,7 @@ namespace BlogSystem.Domain.Concrete
             this.SaveChanges();
         }
 
-        public Post DeletePost(int postId)
+        public IPost DeletePost(int postId)
         {
             var postToDelete = this.Posts.FirstOrDefault(p => p.PostId == postId);
 

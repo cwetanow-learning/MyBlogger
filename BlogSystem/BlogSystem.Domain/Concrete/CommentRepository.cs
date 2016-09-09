@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogSystem.Domain.Models;
 using System.Data.Entity;
+using BlogSystem.Domain.Contracts.Entities;
 
 namespace BlogSystem.Domain.Concrete
 {
     public class CommentRepository : BaseRepository, ICommentRepository
     {
-        public IEnumerable<Comment> Comments
+        public IEnumerable<IComment> Comments
         {
             get
             {

@@ -1,4 +1,5 @@
 ﻿using BlogSystem.Domain.Contracts;
+using BlogSystem.Domain.Contracts.Entities;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using System;
@@ -39,7 +40,7 @@ namespace BlogSystem.Web.Controllers
             return this.AllPosts(latestPosts);
         }
 
-        public PartialViewResult AllPosts(IEnumerable<Post> posts)
+        public PartialViewResult AllPosts(IEnumerable<IPost> posts)
         {
             return this.PartialView("_TopPostsPartial", posts);
         }

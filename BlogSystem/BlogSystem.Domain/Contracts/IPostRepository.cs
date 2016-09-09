@@ -10,11 +10,11 @@ namespace BlogSystem.Domain.Contracts
 {
     public interface IPostRepository
     {
-        IEnumerable<Post> Posts { get; }
+        IEnumerable<IPost> Posts { get; }
 
         void SavePost(Post post);
 
-        Post DeletePost(int postId);
+        IPost DeletePost(int postId);
 
         void ChangeRating(int postId, int value);
     }
