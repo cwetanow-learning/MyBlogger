@@ -42,12 +42,7 @@ namespace BlogSystem.Domain.Concrete
 
             if (post.PostId == GlobalConstants.IdOfEntityNotInDB)
             {
-                //  var newPost = this.context.Posts.Create();
                 this.context.Posts.Add(post);
-
-                //    this.context.Entry(newPost).CurrentValues.SetValues(post);
-
-                //  var b = this.context.Entry(newPost);
             }
             else
             {

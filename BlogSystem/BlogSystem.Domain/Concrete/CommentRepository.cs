@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlogSystem.Domain.Models;
+using System.Data.Entity;
 
 namespace BlogSystem.Domain.Concrete
 {
@@ -15,7 +16,9 @@ namespace BlogSystem.Domain.Concrete
         {
             get
             {
-                return this.context.Comments;
+                return this.context.Comments
+                    .Include(c => c.Author)
+                    .Include(c => c.Post);
             }
         }
     }
