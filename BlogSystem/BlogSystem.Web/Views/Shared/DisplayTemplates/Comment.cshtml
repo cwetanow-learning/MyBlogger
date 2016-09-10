@@ -1,4 +1,6 @@
-﻿@model BlogSystem.Domain.Contracts.Entities.IComment
+﻿@using Microsoft.AspNet.Identity;
+
+@model BlogSystem.Domain.Contracts.Entities.IComment
 
 <div class="media">
     <div class="media-body">
@@ -7,5 +9,12 @@
             <small>@String.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</small>
         </h4>
         @Model.CommentText
+        @if (this.User.Identity.GetUserId() == Model.Author.Id || Model.Author.Id == Model.Post.Author.Id)
+        {
+            @Html.ActionLink(" ", "Delete",
+           new { controller = "Comment", commentId = Model.CommentId, postId=Model.Post.PostId },
+           new { @class = "pull-right glyphicon glyphicon-trash" })
+        }
+
     </div>
 </div>
