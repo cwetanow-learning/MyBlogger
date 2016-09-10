@@ -24,14 +24,17 @@ namespace BlogSystem.Domain.Concrete
             }
         }
 
-        public void WriteComment(Comment comment, int postId)
+        public void WriteComment(Comment comment, int postId, string authorId)
         {
             var post = this.GetPostById(postId);
+            var author = this.GetUserById(authorId);
 
             comment.Post = post;
-            //    post.Comments.Add(comment);
+            comment.Author = author;
 
             this.context.Comments.Add(comment);
+            post.Comments.Add(comment);
+            comment.Author.Comments.Add(comment);
 
             this.SaveChanges();
         }

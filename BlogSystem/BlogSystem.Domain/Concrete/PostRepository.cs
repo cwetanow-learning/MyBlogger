@@ -61,6 +61,7 @@ namespace BlogSystem.Domain.Concrete
             if (post.PostId == GlobalConstants.IdOfEntityNotInDB)
             {
                 this.context.Posts.Add(post);
+                post.Author.Posts.Add(post);
             }
             else
             {

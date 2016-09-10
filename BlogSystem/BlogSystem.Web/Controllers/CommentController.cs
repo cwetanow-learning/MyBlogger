@@ -22,13 +22,14 @@ namespace BlogSystem.Web.Controllers
             var comment = new Comment
             {
                 CommentText = commentWithPostId.Text,
-                Author = this.CurrentUser,
                 Date = DateHelper.GetCurrentTime()
             };
 
-            this.repository.WriteComment(comment, commentWithPostId.PostId);
+            var userId = this.GetCurrentUserId();
 
-            return this.PartialView(comment);
+            this.repository.WriteComment(comment, commentWithPostId.PostId, userId);
+
+            return this.PartialView("_RenderCommentsPartial", comment.Post.Comments);
         }
     }
 }

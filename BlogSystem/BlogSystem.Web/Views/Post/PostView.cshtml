@@ -78,10 +78,7 @@
         <!-- Comment -->
 
         <div id="comments">
-            @foreach (var comment in Model.Comments)
-            {
-                Html.DisplayFor(c => comment);
-            }
+            @Html.Partial("_RenderCommentsPartial", Model.Comments)
         </div>
 
     </div>

@@ -1,0 +1,6 @@
+﻿@model IEnumerable<BlogSystem.Domain.Models.Comment>
+
+@foreach (var comment in Model)
+            {
+                Html.DisplayFor(c => comment);
+            }
