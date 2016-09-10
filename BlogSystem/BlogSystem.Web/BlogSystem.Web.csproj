@@ -301,11 +301,11 @@
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Post.cshtml" />
     <Content Include="Views\Post\Rating.cshtml" />
+    <Content Include="Views\Comment\CommentPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

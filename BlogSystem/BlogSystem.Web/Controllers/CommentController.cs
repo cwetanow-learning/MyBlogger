@@ -1,4 +1,8 @@
 ﻿using BlogSystem.Domain.Contracts;
+using BlogSystem.Domain.Contracts.Entities;
+using BlogSystem.Domain.Models;
+using BlogSystem.Domain.Utils;
+using BlogSystem.Web.Controllers.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +11,7 @@ using System.Web.Mvc;
 
 namespace BlogSystem.Web.Controllers
 {
-    public class CommentController : Controller
+    public class CommentController : BaseController
     {
         private ICommentRepository repository;
 
@@ -16,11 +20,20 @@ namespace BlogSystem.Web.Controllers
             this.repository = repo;
         }
 
-        public PartialViewResult CommentOnPost(string commentText)
+        [HttpPost]
+        public PartialViewResult CommentPost(string commentText, Post post)
         {
+            var comment = new Comment
+            {
+                CommentText = commentText,
+                Author = this.CurrentUser,
+                Post = post,
+                Date = DateHelper.GetCurrentTime()
+            };
 
+            this.repository.WriteComment(comment);
 
-            return this.PartialView();
+            return this.PartialView(comment);
         }
     }
 }

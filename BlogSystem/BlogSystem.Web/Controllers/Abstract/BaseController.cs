@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace BlogSystem.Web.Controllers.Abstract
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected ApplicationUser currentUser;
         protected ApplicationUserManager userManager;

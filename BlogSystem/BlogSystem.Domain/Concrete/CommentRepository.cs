@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BlogSystem.Domain.Models;
 using System.Data.Entity;
 using BlogSystem.Domain.Contracts.Entities;
+using BlogSystem.Domain.Utils;
 
 namespace BlogSystem.Domain.Concrete
 {
@@ -21,6 +22,13 @@ namespace BlogSystem.Domain.Concrete
                     .Include(c => c.Author)
                     .Include(c => c.Post);
             }
+        }
+
+        public void WriteComment(Comment comment)
+        {
+            this.context.Comments.Add(comment);
+
+            this.SaveChanges();
         }
     }
 }

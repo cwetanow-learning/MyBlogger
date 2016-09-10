@@ -54,14 +54,30 @@
 
         <!-- Blog Comments -->
         <!-- Comments Form -->
+
         <div class="well">
-            <h4>Leave a Comment:</h4>
-            <form role="form">
-                <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <h4>Leave a Comment:</h4>
+
+                var commentText = "";
+
+                @Html.AntiForgeryToken();
+
+                @Html.TextAreaFor(x => commentText, new { @class = "form-control", rows = 5 });
+                @Ajax.ActionLink("Submit",
+                        "CommentPost",
+                        new { controller = "Comment", commentText = commentText, post = Model },
+                        new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertBefore },
+                        new {@class="btn btn-primary" });
+            }
+            else
+            {
+                <p>
+                    Only registered users can comment.
+                    @Html.ActionLink("Login", "Login", "Account")
+                </p>
+            }
         </div>
 
         <hr>
@@ -69,11 +85,12 @@
         <!-- Posted Comments -->
         <!-- Comment -->
 
-        @foreach (var comment in Model.Comments)
+        <div id="comments">
+            @foreach (var comment in Model.Comments)
             {
                 Html.DisplayFor(c => comment);
             }
-
+        </div>
 
     </div>
 
