@@ -27,12 +27,15 @@ namespace BlogSystem.Domain.Concrete
         public int ChangeRating(int postId, int value)
         {
             var post = this.context.Posts.Find(postId);
-            if (!(post.Rating == GlobalConstants.MinimumPostRating))
-            {
-                post.Rating += value;
 
-                this.SaveChanges();
+            if (post.Rating == GlobalConstants.MinimumPostRating && value < 0)
+            {
+                return post.Rating;
             }
+
+            post.Rating += value;
+
+            this.SaveChanges();
 
             return post.Rating;
         }

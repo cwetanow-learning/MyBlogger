@@ -32,11 +32,11 @@
         @if (Model.Author.Name.Equals(this.User.Identity.Name))
         {
             @Ajax.ActionLink(" ", "Rating",
-       new { controller = "Post", id = Model.PostId, rating = -1 },
+       new { controller = "Post", id = Model.PostId, rating = BlogSystem.Domain.Utils.GlobalConstants.DislikePostValue },
        new AjaxOptions { UpdateTargetId = "rating", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" },
        new { @class = "glyphicon glyphicon-arrow-down btn-lg" })
             @Ajax.ActionLink(" ", "Rating",
-       new { controller = "Post", id = Model.PostId, rating = 1 },
+       new { controller = "Post", id = Model.PostId, rating = BlogSystem.Domain.Utils.GlobalConstants.LikePostValue },
        new AjaxOptions { UpdateTargetId = "rating", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" },
        new { @class = "glyphicon glyphicon-arrow-up  btn-lg" })
         }

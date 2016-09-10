@@ -123,6 +123,7 @@
     <Compile Include="Web\BlogControllerTests\EditTests.cs" />
     <Compile Include="Web\PostControllerTests\AllPostsTests.cs" />
     <Compile Include="Web\PostControllerTests\PostViewTests.cs" />
+    <Compile Include="Web\PostControllerTests\RatingTests.cs" />
     <Compile Include="Web\PostControllerTests\RecentPostsTests.cs" />
     <Compile Include="Web\PostControllerTests\TopPostsTests.cs" />
   </ItemGroup>
