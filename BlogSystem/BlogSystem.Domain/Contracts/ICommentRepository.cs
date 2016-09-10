@@ -11,5 +11,7 @@ namespace BlogSystem.Domain.Contracts
     public interface ICommentRepository
     {
         IEnumerable<IComment> Comments { get;  }
+
+        void WriteComment(IComment comment, IPost post);
     }
 }

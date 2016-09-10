@@ -29,7 +29,7 @@
 
         <hr>
         <p><span class="glyphicon glyphicon-star"></span> Rating: <span id="rating">@Model.Rating</span></p>
-        @if (Model.Author.Name.Equals(this.User.Identity.Name))
+        @if (!Model.Author.Name.Equals(this.User.Identity.Name))
         {
             @Ajax.ActionLink(" ", "Rating",
        new { controller = "Post", id = Model.PostId, rating = BlogSystem.Domain.Utils.GlobalConstants.DislikePostValue },

@@ -2,6 +2,7 @@
 using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
+using BlogSystem.Web.Controllers.Abstract;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -13,39 +14,13 @@ using System.Web.Mvc;
 namespace BlogSystem.Web.Controllers
 {
     [Authorize]
-    public class BlogController : Controller
+    public class BlogController : BaseController
     {
         private IPostRepository repository;
-        private ApplicationUser currentUser;
-        private ApplicationUserManager userManager;
 
         public BlogController(IPostRepository repo)
         {
             this.repository = repo;
-        }
-
-        public ApplicationUser CurrentUser
-        {
-            get
-            {
-                return this.currentUser ?? this.UserManager.FindById(this.GetCurrentUserId());
-            }
-            private set
-            {
-                this.currentUser = value;
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                this.userManager = value;
-            }
         }
 
         public ViewResult Index()
@@ -92,11 +67,6 @@ namespace BlogSystem.Web.Controllers
             this.repository.DeletePost(postId);
 
             return this.RedirectToAction("Index");
-        }
-
-        private string GetCurrentUserId()
-        {
-            return System.Threading.Thread.CurrentPrincipal.Identity.GetUserId();
         }
     }
 }
