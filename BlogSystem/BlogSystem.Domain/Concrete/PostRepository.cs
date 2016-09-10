@@ -24,12 +24,17 @@ namespace BlogSystem.Domain.Concrete
             }
         }
 
-        public void ChangeRating(int postId, int value)
+        public int ChangeRating(int postId, int value)
         {
             var post = this.context.Posts.Find(postId);
-            post.Rating += value;
+            if (!(post.Rating == GlobalConstants.MinimumPostRating))
+            {
+                post.Rating += value;
 
-            this.SaveChanges();
+                this.SaveChanges();
+            }
+
+            return post.Rating;
         }
 
         public IPost DeletePost(int postId)

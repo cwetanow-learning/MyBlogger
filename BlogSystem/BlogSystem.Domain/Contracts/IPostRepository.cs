@@ -16,6 +16,6 @@ namespace BlogSystem.Domain.Contracts
 
         IPost DeletePost(int postId);
 
-        void ChangeRating(int postId, int value);
+        int ChangeRating(int postId, int value);
     }
 }

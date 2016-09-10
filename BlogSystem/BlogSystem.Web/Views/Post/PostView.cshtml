@@ -28,20 +28,18 @@
         <p><span class="glyphicon glyphicon-time"></span> @String.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</p>
 
         <hr>
-        <p><span class="glyphicon glyphicon-star"></span> <span id="rating">Rating: @Model.Rating</span></p>
-        @if (!Model.Author.Name.Equals(this.User.Identity.Name))
+        <p><span class="glyphicon glyphicon-star"></span> Rating: <span id="rating">@Model.Rating</span></p>
+        @if (Model.Author.Name.Equals(this.User.Identity.Name))
         {
-
-        }
-
-        @Ajax.ActionLink(" ", "Rating",
-       new { controller = "Blog", id = Model.PostId, rating = -1 },
-       new AjaxOptions { UpdateTargetId = "rating", HttpMethod = "POST" },
+            @Ajax.ActionLink(" ", "Rating",
+       new { controller = "Post", id = Model.PostId, rating = -1 },
+       new AjaxOptions { UpdateTargetId = "rating", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" },
        new { @class = "glyphicon glyphicon-arrow-down btn-lg" })
-        @Ajax.ActionLink(" ", "Rating",
-       new { controller = "Blog", id = Model.PostId, rating = 1 },
-       new AjaxOptions { UpdateTargetId = "rating", HttpMethod = "POST" },
+            @Ajax.ActionLink(" ", "Rating",
+       new { controller = "Post", id = Model.PostId, rating = 1 },
+       new AjaxOptions { UpdateTargetId = "rating", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" },
        new { @class = "glyphicon glyphicon-arrow-up  btn-lg" })
+        }
 
         <hr>
         <!-- Post Content -->

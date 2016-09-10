@@ -51,5 +51,12 @@ namespace BlogSystem.Web.Controllers
 
             return this.View(post);
         }
+
+        public PartialViewResult Rating(int id, int rating)
+        {
+            var postRating = this.postRepository.ChangeRating(id, rating);
+
+            return this.PartialView(postRating);
+        }
     }
 }
