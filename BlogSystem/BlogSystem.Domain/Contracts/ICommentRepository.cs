@@ -10,6 +10,6 @@ namespace BlogSystem.Domain.Contracts
 
         void WriteComment(Comment comment, int postId, string authorId);
 
-        void DeleteComment(Comment comment);
+        void DeleteComment(int commentId);
     }
 }

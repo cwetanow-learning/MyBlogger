@@ -24,6 +24,18 @@ namespace BlogSystem.Domain.Concrete
             }
         }
 
+        public void DeleteComment(int commentId)
+        {
+            var commentToDelete = this.context.Comments.Find(commentId);
+
+            if (commentToDelete != null)
+            {
+                commentToDelete.IsDeleted = true;
+            }
+
+            this.SaveChanges();
+        }
+
         public void WriteComment(Comment comment, int postId, string authorId)
         {
             var post = this.GetPostById(postId);
@@ -31,7 +43,7 @@ namespace BlogSystem.Domain.Concrete
 
             comment.Post = post;
             comment.Author = author;
-            
+
             comment.Author.Comments.Add(comment);
             this.context.Comments.Add(comment);
             post.Comments.Add(comment);

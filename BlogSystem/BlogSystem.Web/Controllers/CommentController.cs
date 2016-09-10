@@ -37,12 +37,18 @@ namespace BlogSystem.Web.Controllers
 
         public PartialViewResult RenderComments(IEnumerable<IComment> comments)
         {
-            if (comments.Count() > 0)
-            {
-                comments = comments.OrderByDescending(x => x.Date).ToList();
-            }
+            var result = comments.OrderByDescending(x => x.Date)
+                .Where(c => !c.IsDeleted)
+                .ToList();
 
-            return this.PartialView(comments);
+            return this.PartialView(result);
+        }
+
+        public ActionResult Delete(int commentId, int postId)
+        {
+            this.repository.DeleteComment(commentId);
+
+            return this.RedirectToAction("PostView", new { controller = "Post", postId = postId });
         }
     }
 }
