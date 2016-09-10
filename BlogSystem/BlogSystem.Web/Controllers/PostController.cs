@@ -2,6 +2,7 @@
 using BlogSystem.Domain.Contracts.Entities;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
+using BlogSystem.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,12 @@ namespace BlogSystem.Web.Controllers
         {
             var post = this.postRepository.Posts.FirstOrDefault(p => p.PostId == postId);
 
-            return this.View(post);
+            var postModel = new PostViewModel
+            {
+                Post = post
+            };
+
+            return this.View(postModel);
         }
 
         public PartialViewResult Rating(int id, int rating)

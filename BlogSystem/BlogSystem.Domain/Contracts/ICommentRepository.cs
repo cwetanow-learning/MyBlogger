@@ -12,6 +12,6 @@ namespace BlogSystem.Domain.Contracts
     {
         IEnumerable<IComment> Comments { get;  }
 
-        void WriteComment(Comment comment);
+        void WriteComment(Comment comment, int postId);
     }
 }

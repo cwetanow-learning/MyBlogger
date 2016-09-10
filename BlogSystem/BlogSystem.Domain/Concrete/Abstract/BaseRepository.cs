@@ -18,5 +18,12 @@ namespace BlogSystem.Domain.Concrete.Abstract
 
             return result;
         }
+
+        protected Post GetPostById(int id)
+        {
+            var result = this.context.Posts.Find(id);
+
+            return result;
+        }
     }
 }

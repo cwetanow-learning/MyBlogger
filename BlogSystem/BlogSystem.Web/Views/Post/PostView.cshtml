@@ -1,4 +1,5 @@
-﻿@model BlogSystem.Domain.Models.Post
+﻿@using BlogSystem.Domain.Contracts.Entities
+@model BlogSystem.Web.Models.PostViewModel
 
 @{
     ViewBag.Title = "PostView";
@@ -11,32 +12,32 @@
 
         <!-- Blog Post -->
         <!-- Title -->
-        <h1>@Model.Title</h1>
-        @if (Model.Author.Name.Equals(this.User.Identity.Name))
+        <h1>@Model.Post.Title</h1>
+        @if (Model.Post.Author.Name.Equals(this.User.Identity.Name))
         {
-            @Html.ActionLink(" ", "Delete", new { controller = "Blog", postId = Model.PostId }, new { @class = "pull-right glyphicon glyphicon-trash" })
+            @Html.ActionLink(" ", "Delete", new { controller = "Blog", postId = Model.Post.PostId }, new { @class = "pull-right glyphicon glyphicon-trash" })
 
         }
 
         <!-- Author -->
         <p class="lead">
-            by <a href="#">@Model.Author.UserName</a>
+            by <a href="#">@Model.Post.Author.UserName</a>
         </p>
 
         <hr>
         <!-- Date/Time -->
-        <p><span class="glyphicon glyphicon-time"></span> @String.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</p>
+        <p><span class="glyphicon glyphicon-time"></span> @String.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Post.Date)</p>
 
         <hr>
-        <p><span class="glyphicon glyphicon-star"></span> Rating: <span id="rating">@Model.Rating</span></p>
-        @if (!Model.Author.Name.Equals(this.User.Identity.Name))
+        <p><span class="glyphicon glyphicon-star"></span> Rating: <span id="rating">@Model.Post.Rating</span></p>
+        @if (!Model.Post.Author.Name.Equals(this.User.Identity.Name))
         {
             @Ajax.ActionLink(" ", "Rating",
-       new { controller = "Post", id = Model.PostId, rating = BlogSystem.Domain.Utils.GlobalConstants.DislikePostValue },
+       new { controller = "Post", id = Model.Post.PostId, rating = BlogSystem.Domain.Utils.GlobalConstants.DislikePostValue },
        new AjaxOptions { UpdateTargetId = "rating", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" },
        new { @class = "glyphicon glyphicon-arrow-down btn-lg" })
             @Ajax.ActionLink(" ", "Rating",
-       new { controller = "Post", id = Model.PostId, rating = BlogSystem.Domain.Utils.GlobalConstants.LikePostValue },
+       new { controller = "Post", id = Model.Post.PostId, rating = BlogSystem.Domain.Utils.GlobalConstants.LikePostValue },
        new AjaxOptions { UpdateTargetId = "rating", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" },
        new { @class = "glyphicon glyphicon-arrow-up  btn-lg" })
         }
@@ -44,10 +45,10 @@
         <hr>
         <!-- Post Content -->
         <p class="lead">
-            @Model.Subtitle
+            @Model.Post.Subtitle
         </p>
         <p>
-            @Html.Raw(Model.Text)
+            @Html.Raw(Model.Post.Text)
         </p>
 
         <hr>
@@ -59,24 +60,30 @@
             @if (User.Identity.IsAuthenticated)
             {
                 <h4>Leave a Comment:</h4>
-
-                var commentText = "";
-
                 @Html.AntiForgeryToken();
 
-                @Html.TextAreaFor(x => commentText, new { @class = "form-control", rows = 5 });
-                @Ajax.ActionLink("Submit",
-                        "CommentPost",
-                        new { controller = "Comment", commentText = commentText, post = Model },
-                        new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertBefore },
-                        new {@class="btn btn-primary" });
+                using (Ajax.BeginForm("CommentPost",
+                    new { controller = "Comment", postId = Model.Post.PostId, text = Model.CommentText },
+                    new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertBefore }))
+                {
+                    @Html.TextAreaFor(m => m.CommentText, new { @class = "form-control", rows = 5 });
+                    <input type="submit" class="btn btn-primary" value="Submit" />
+                }
+
+                @Html.TextAreaFor(m => m.CommentText, new { @class = "form-control", rows = 5 });
+                @Ajax.ActionLink("Submit", "CommentPost", new
+           {
+               controller = "Comment",
+               postId = Model.Post.PostId,
+               text = Model.CommentText
+           }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertBefore }, new { @class = "btn btn-primary" })
             }
             else
             {
-                <p>
-                    Only registered users can comment.
-                    @Html.ActionLink("Login", "Login", "Account")
-                </p>
+                < p >
+                Only registered users can comment.
+                @Html.ActionLink("Login", "Login", "Account")
+                </ p >
             }
         </div>
 
@@ -86,7 +93,7 @@
         <!-- Comment -->
 
         <div id="comments">
-            @foreach (var comment in Model.Comments)
+            @foreach (var comment in Model.Post.Comments)
             {
                 Html.DisplayFor(c => comment);
             }

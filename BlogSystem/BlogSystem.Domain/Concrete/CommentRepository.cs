@@ -24,8 +24,13 @@ namespace BlogSystem.Domain.Concrete
             }
         }
 
-        public void WriteComment(Comment comment)
+        public void WriteComment(Comment comment, int postId)
         {
+            var post = this.GetPostById(postId);
+
+            comment.Post = post;
+            //    post.Comments.Add(comment);
+
             this.context.Comments.Add(comment);
 
             this.SaveChanges();

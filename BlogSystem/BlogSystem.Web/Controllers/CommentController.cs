@@ -1,12 +1,8 @@
 ﻿using BlogSystem.Domain.Contracts;
-using BlogSystem.Domain.Contracts.Entities;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Controllers.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using BlogSystem.Web.Models;
 using System.Web.Mvc;
 
 namespace BlogSystem.Web.Controllers
@@ -21,17 +17,16 @@ namespace BlogSystem.Web.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult CommentPost(string commentText, Post post)
+        public PartialViewResult CommentPost(string text, int postId)
         {
             var comment = new Comment
             {
-                CommentText = commentText,
+                CommentText = text,
                 Author = this.CurrentUser,
-                Post = post,
                 Date = DateHelper.GetCurrentTime()
             };
 
-            this.repository.WriteComment(comment);
+            this.repository.WriteComment(comment, postId);
 
             return this.PartialView(comment);
         }
