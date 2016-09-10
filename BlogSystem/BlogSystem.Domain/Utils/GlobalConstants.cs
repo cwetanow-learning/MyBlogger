@@ -15,5 +15,7 @@ namespace BlogSystem.Domain.Utils
         public static int MinimumPostRating = 0;
         public static int DislikePostValue = -1;
         public static int LikePostValue = 1;
+
+        public static string AdministratorRole = "Admin";
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BlogSystem.Web.Models;
 using BlogSystem.Domain.Models;
+using BlogSystem.Domain.Utils;
 
 namespace BlogSystem.Web.Controllers
 {
@@ -148,6 +149,7 @@ namespace BlogSystem.Web.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Username, Email = model.Email, Name = model.Username };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
