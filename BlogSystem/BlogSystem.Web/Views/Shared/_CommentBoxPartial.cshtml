@@ -1,8 +1,8 @@
 ﻿@model BlogSystem.Web.Models.CommentViewModel
 
 @using (Ajax.BeginForm("CommentPost",
-                                                        new { controller = "Comment" },
-                                                        new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "comments" }))
+                        new { controller = "Comment" },
+                        new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "comments", OnSuccess = "done" }))
 {
     @Html.TextAreaFor(m => m.Text, new { @class = "form-control", rows = 5 });
     @Html.HiddenFor(m => m.PostId)
@@ -10,8 +10,7 @@
 }
 
 <script>
-    $('#submit').click(function () {
-        console.log(5);
+    var done = function () {
         $('.form-control').val('');
-    })
+    };
 </script>
