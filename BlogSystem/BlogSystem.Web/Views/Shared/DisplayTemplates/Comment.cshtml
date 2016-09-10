@@ -9,10 +9,12 @@
             <small>@String.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</small>
         </h4>
         @Model.CommentText
-        @if (this.User.Identity.GetUserId() == Model.Author.Id || Model.Author.Id == Model.Post.Author.Id)
+        @if (this.User.Identity.GetUserId() == Model.Author.Id ||
+                Model.Author.Id == Model.Post.Author.Id ||
+                this.User.IsInRole(BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole))
         {
             @Html.ActionLink(" ", "Delete",
-           new { controller = "Comment", commentId = Model.CommentId, postId=Model.Post.PostId },
+           new { controller = "Comment", commentId = Model.CommentId, postId = Model.Post.PostId },
            new { @class = "pull-right glyphicon glyphicon-trash" })
         }
 

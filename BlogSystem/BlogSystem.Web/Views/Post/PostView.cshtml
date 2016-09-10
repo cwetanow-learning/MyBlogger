@@ -14,8 +14,9 @@
         <!-- Blog Post -->
         <!-- Title -->
         <h1>@Model.Title</h1>
-        @if (Model.Author.Name.Equals(this.User.Identity.Name))
-            {
+        @if (Model.Author.Name.Equals(this.User.Identity.Name) ||
+                this.User.IsInRole(BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole))
+        {
             @Html.ActionLink(" ", "Delete", new { controller = "Blog", postId = Model.PostId }, new { @class = "pull-right glyphicon glyphicon-trash" })
 
         }
