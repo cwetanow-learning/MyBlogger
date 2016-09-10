@@ -5,6 +5,7 @@ using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Controllers.Abstract;
 using BlogSystem.Web.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace BlogSystem.Web.Controllers
@@ -36,6 +37,11 @@ namespace BlogSystem.Web.Controllers
 
         public PartialViewResult RenderComments(IEnumerable<IComment> comments)
         {
+            if (comments.Count() > 0)
+            {
+                comments = comments.OrderByDescending(x => x.Date).ToList();
+            }
+
             return this.PartialView(comments);
         }
     }

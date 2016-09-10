@@ -31,10 +31,10 @@ namespace BlogSystem.Domain.Concrete
 
             comment.Post = post;
             comment.Author = author;
-
+            
+            comment.Author.Comments.Add(comment);
             this.context.Comments.Add(comment);
             post.Comments.Add(comment);
-            comment.Author.Comments.Add(comment);
 
             this.SaveChanges();
         }
