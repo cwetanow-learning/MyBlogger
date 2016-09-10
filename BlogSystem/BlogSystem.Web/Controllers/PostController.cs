@@ -49,13 +49,8 @@ namespace BlogSystem.Web.Controllers
         public ViewResult PostView(int postId)
         {
             var post = this.postRepository.Posts.FirstOrDefault(p => p.PostId == postId);
-
-            var postModel = new PostViewModel
-            {
-                Post = post
-            };
-
-            return this.View(postModel);
+            
+            return this.View(post);
         }
 
         public PartialViewResult Rating(int id, int rating)

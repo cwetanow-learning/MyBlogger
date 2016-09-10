@@ -17,16 +17,16 @@ namespace BlogSystem.Web.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult CommentPost(string text, int postId)
+        public PartialViewResult CommentPost(CommentViewModel commentWithPostId)
         {
             var comment = new Comment
             {
-                CommentText = text,
+                CommentText = commentWithPostId.Text,
                 Author = this.CurrentUser,
                 Date = DateHelper.GetCurrentTime()
             };
 
-            this.repository.WriteComment(comment, postId);
+            this.repository.WriteComment(comment, commentWithPostId.PostId);
 
             return this.PartialView(comment);
         }

@@ -228,8 +228,8 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -303,6 +303,7 @@
     <Content Include="Views\Shared\EditorTemplates\Post.cshtml" />
     <Content Include="Views\Post\Rating.cshtml" />
     <Content Include="Views\Comment\CommentPost.cshtml" />
+    <Content Include="Views\Shared\_CommentBoxPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
