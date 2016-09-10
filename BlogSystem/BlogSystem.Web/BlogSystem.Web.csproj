@@ -304,7 +304,7 @@
     <Content Include="Views\Post\Rating.cshtml" />
     <Content Include="Views\Comment\CommentPost.cshtml" />
     <Content Include="Views\Shared\_CommentBoxPartial.cshtml" />
-    <Content Include="Views\Shared\_RenderCommentsPartial.cshtml" />
+    <Content Include="Views\Comment\RenderComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

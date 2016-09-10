@@ -25,6 +25,7 @@ namespace BlogSystem.Web.Controllers
             var topPosts = this.postRepository.Posts
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Rating)
+                .ThenByDescending(p=>p.Comments.Count)
                 .ThenByDescending(p => p.Date)
                 .Take(GlobalConstants.HomePageTopPostsCount);
 

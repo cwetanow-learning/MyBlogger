@@ -1,4 +1,6 @@
-﻿@model BlogSystem.Domain.Contracts.Entities.IPost
+﻿@using BlogSystem.Web.Models
+
+@model BlogSystem.Domain.Contracts.Entities.IPost
 
 @{
     ViewBag.Title = "PostView";
@@ -61,14 +63,14 @@
                 <h4>Leave a Comment:</h4>
                 @Html.AntiForgeryToken();
 
-                @Html.Partial("_CommentBoxPartial", new BlogSystem.Web.Models.CommentViewModel { PostId = Model.PostId })
+                @Html.Partial("_CommentBoxPartial", new CommentViewModel { PostId = Model.PostId })
             }
             else
             {
-                < p >
-                Only registered users can comment.
-                @Html.ActionLink("Login", "Login", "Account")
-                </ p >
+                <p>
+                    Only registered users can comment.
+                    @Html.ActionLink("Login", "Login", "Account")
+                </p>
             }
         </div>
 
@@ -78,7 +80,7 @@
         <!-- Comment -->
 
         <div id="comments">
-            @Html.Partial("_RenderCommentsPartial", Model.Comments)
+            @Html.Action("RenderComments", "Comment", new { Model.Comments })
         </div>
 
     </div>

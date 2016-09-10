@@ -1,8 +1,10 @@
 ﻿using BlogSystem.Domain.Contracts;
+using BlogSystem.Domain.Contracts.Entities;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Controllers.Abstract;
 using BlogSystem.Web.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace BlogSystem.Web.Controllers
@@ -29,7 +31,12 @@ namespace BlogSystem.Web.Controllers
 
             this.repository.WriteComment(comment, commentWithPostId.PostId, userId);
 
-            return this.PartialView("_RenderCommentsPartial", comment.Post.Comments);
+            return this.PartialView("RenderComments", comment.Post.Comments);
+        }
+
+        public PartialViewResult RenderComments(IEnumerable<IComment> comments)
+        {
+            return this.PartialView(comments);
         }
     }
 }
