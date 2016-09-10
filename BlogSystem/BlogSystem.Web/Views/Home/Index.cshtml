@@ -6,7 +6,11 @@
     <h1>My Blogger</h1>
     <p class="lead">My Blogger is a blog system for people with different interests, who want to unleash their creative self.</p>
     <p>
-        @Html.ActionLink("Try it!", "Register", new { controller = "Account" }, new { @class = "btn btn-primary btn-lg" })
+        @if (!this.User.Identity.IsAuthenticated)
+            {
+            @Html.ActionLink("Try it!", "Register", new { controller = "Account" }, new { @class = "btn btn-primary btn-lg" })
+        }
+
     </p>
 </div>
 

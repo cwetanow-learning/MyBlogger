@@ -32,13 +32,23 @@ namespace BlogSystem.Web.Controllers
 
             this.repository.WriteComment(comment, commentWithPostId.PostId, userId);
 
-            return this.PartialView("RenderComments", comment.Post.Comments);
+            var comments = this.repository.Comments
+                .Where(c=>!c.IsDeleted)
+                .Where(c => c.Post.PostId == commentWithPostId.PostId)
+                .OrderByDescending(x => x.Date)
+                .ToList(); ;
+
+            return this.PartialView("RenderComments", comments);
         }
 
         public PartialViewResult RenderComments(IEnumerable<IComment> comments)
         {
-            var result = comments.OrderByDescending(x => x.Date)
-                .Where(c => !c.IsDeleted)
+            var ids = comments.Select(x => x.CommentId);
+
+            var result = this.repository.Comments
+                .Where(c=>!c.IsDeleted)
+                .Where(c => ids.Contains(c.CommentId))
+                .OrderByDescending(x => x.Date)
                 .ToList();
 
             return this.PartialView(result);
