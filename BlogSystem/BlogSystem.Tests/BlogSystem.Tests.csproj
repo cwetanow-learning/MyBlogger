@@ -121,6 +121,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\BlogControllerTests\CreateTests.cs" />
     <Compile Include="Web\BlogControllerTests\EditTests.cs" />
+    <Compile Include="Web\CommentControllerTests\TestCommentPost.cs" />
     <Compile Include="Web\PostControllerTests\AllPostsTests.cs" />
     <Compile Include="Web\PostControllerTests\PostViewTests.cs" />
     <Compile Include="Web\PostControllerTests\RatingTests.cs" />
