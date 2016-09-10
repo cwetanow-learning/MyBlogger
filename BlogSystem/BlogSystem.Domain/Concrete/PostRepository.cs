@@ -48,6 +48,11 @@ namespace BlogSystem.Domain.Concrete
             {
                 postToDelete.IsDeleted = true;
 
+                foreach (var comment in postToDelete.Comments)
+                {
+                    comment.IsDeleted = true;
+                }
+
                 this.SaveChanges();
             }
 

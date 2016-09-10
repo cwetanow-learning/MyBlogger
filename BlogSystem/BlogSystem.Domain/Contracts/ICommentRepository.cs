@@ -9,5 +9,7 @@ namespace BlogSystem.Domain.Contracts
         IEnumerable<IComment> Comments { get;  }
 
         void WriteComment(Comment comment, int postId, string authorId);
+
+        void DeleteComment(Comment comment);
     }
 }
