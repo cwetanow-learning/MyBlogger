@@ -17,7 +17,7 @@ namespace BlogSystem.Web.Controllers
             this.postRepository = repo;
         }
 
-        public PartialViewResult TopPosts(int count)
+        public PartialViewResult TopPosts(int count, int page = 1)
         {
             var topPosts = this.postRepository.Posts
                 .Where(p => !p.IsDeleted)
@@ -29,11 +29,12 @@ namespace BlogSystem.Web.Controllers
             return this.AllPosts(topPosts);
         }
 
-        public PartialViewResult LatestPosts(int count)
+        public PartialViewResult LatestPosts(int count, int page = 1)
         {
             var latestPosts = this.postRepository.Posts
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Date)
+                .Skip((page - 1) * GlobalConstants.ListPostCount)
                 .Take(count);
 
             return this.AllPosts(latestPosts);
@@ -58,9 +59,9 @@ namespace BlogSystem.Web.Controllers
             return this.PartialView(postRating);
         }
 
-        public ViewResult List(bool byDate = false, bool byRating = false)
+        public ViewResult List(bool byDate = false, bool byRating = false, int page = 1)
         {
-            var model = new ListPostViewModel { ByDate = byDate, ByRating = byRating };
+            var model = new ListPostViewModel { ByDate = byDate, ByRating = byRating, Page = page };
 
             return this.View(model);
         }

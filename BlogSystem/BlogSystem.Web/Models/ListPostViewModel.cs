@@ -10,5 +10,7 @@ namespace BlogSystem.Web.Models
         public bool ByDate { get; set; }
 
         public bool ByRating { get; set; }
+
+        public int Page { get; set; }
     }
 }

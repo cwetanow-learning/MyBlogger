@@ -8,9 +8,9 @@
 
 @if (Model.ByRating)
 {
-    @Html.Action("TopPosts", new { controller = "Post", count = GlobalConstants.ListPostCount })
+    @Html.Action("TopPosts", new { controller = "Post", count = GlobalConstants.ListPostCount, page = Model.Page })
 }
 else
 {
-    @Html.Action("LatestPosts", new { controller = "Post", count = GlobalConstants.ListPostCount })
+    @Html.Action("LatestPosts", new { controller = "Post", count = GlobalConstants.ListPostCount, page = Model.Page })
 }

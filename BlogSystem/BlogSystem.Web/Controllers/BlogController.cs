@@ -66,7 +66,7 @@ namespace BlogSystem.Web.Controllers
         {
             this.repository.DeletePost(postId);
 
-            return this.RedirectToAction("Index");
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }
