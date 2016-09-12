@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity;
+@using BlogSystem.Domain.Utils;
 
 @model BlogSystem.Domain.Contracts.Entities.IComment
 
@@ -10,8 +11,8 @@
         </h4>
         @Model.CommentText
         @if (this.User.Identity.GetUserId() == Model.Author.Id ||
-                Model.Author.Id == Model.Post.Author.Id ||
-                this.User.IsInRole(BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole))
+                    Model.Author.Id == Model.Post.Author.Id ||
+                    this.User.IsInRole(GlobalConstants.AdministratorRole))
         {
             @Html.ActionLink(" ", "Delete",
            new { controller = "Comment", commentId = Model.CommentId, postId = Model.Post.PostId },
