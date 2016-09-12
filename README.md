@@ -5,4 +5,6 @@ TODO:
 - Routing fix
 - My comments section
 - User profile section
-- Administration area
+- Search - by user or title
+- Administration area - CRUD on users
+
