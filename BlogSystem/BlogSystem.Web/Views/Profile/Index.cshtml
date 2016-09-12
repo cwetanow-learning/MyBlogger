@@ -4,12 +4,21 @@
     ViewBag.Title = "Index";
 }
 
+<div>
+    <a id="postsToggle" class="btn btn-primary">Posts</a>
 
-<div id="posts">
-    @Html.Action("RenderComments", new { controller = "Comment", comments = Model.Comments })
+    <div id="posts">
+        <hr />
+        @Html.Action("AllPosts", new { controller = "Post", posts = Model.Posts })
+    </div>
+    <hr />
+    <a id="commentsToggle" class="btn btn-primary">Comments</a>
+
+    <div id="comments">
+        <hr />
+        @Html.Action("RenderComments", new { controller = "Comment", comments = Model.Comments })
+    </div>
 </div>
 
-<div id="comments">
-    @Html.Action("RenderComments", new { controller = "Comment", comments = Model.Comments })
-</div>
 
+<script src="~/Scripts/toggler.js"></script>
