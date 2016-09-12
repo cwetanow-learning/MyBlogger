@@ -4,6 +4,7 @@
 
 @{
     ViewBag.Title = "PostView";
+    var isAuthor = Model.Author.Name.Equals(this.User.Identity.Name);
 }
 
 <div class="row">
@@ -14,11 +15,17 @@
         <!-- Blog Post -->
         <!-- Title -->
         <h1>@Model.Title</h1>
-        @if (Model.Author.Name.Equals(this.User.Identity.Name) ||
-                this.User.IsInRole(BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole))
+        @if (isAuthor ||
+                         this.User.IsInRole(BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole))
         {
-            @Html.ActionLink(" ", "Delete", new { controller = "Blog", postId = Model.PostId }, new { @class = "pull-right glyphicon glyphicon-trash" })
+            @Html.ActionLink(" ", "Delete",
+    new { controller = "Blog", postId = Model.PostId },
+    new { @class = "pull-right glyphicon glyphicon-trash big", onclick = "return confirm('Are you sure you wish to delete this article?');" })
+        }
 
+        @if (isAuthor)
+        {
+            @Html.ActionLink(" ", "Edit", new { controller = "Blog", postId = Model.PostId }, new { @class = "pull-right glyphicon glyphicon-edit big" })
         }
 
         <!-- Author -->
