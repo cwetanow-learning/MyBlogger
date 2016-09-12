@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+@Html.ValidationSummary()
+
 <table class="table">
     <tr>
         <th>
@@ -11,10 +13,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.PasswordHash)
         </th>
 
         <th>
@@ -30,15 +28,11 @@
     {
         <tr>
             <td>
-                @Html.ActionLink("See", "Index", new { controller = "Profile", username = item.UserName }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("See", "Index", new { controller = "Profile", area = "", username = item.UserName }, new { @class = "btn btn-primary" })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PasswordHash)
-            </td>
-
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
@@ -46,11 +40,12 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Make Admin", "Adminise", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
 
 </table>
+
+@Html.ActionLink("Restore users", "Restore")

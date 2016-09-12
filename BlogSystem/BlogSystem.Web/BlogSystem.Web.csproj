@@ -254,8 +254,8 @@
     </Content>
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\comment-textarea-methods.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

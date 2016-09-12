@@ -9,7 +9,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", new { controller = "Profile", username = this.User.Identity.GetUserName() })
+                @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", new { controller = "Profile", area = "", username = this.User.Identity.GetUserName() })
             </li>
             @if (this.User.IsInRole(GlobalConstants.AdministratorRole))
             {
@@ -18,10 +18,10 @@
                 </li>
             }
             <li>
-                @Html.ActionLink("Create post", "Create", new { controller = "Blog" }, new { title = "Manage" })
+                @Html.ActionLink("Create post", "Create", new { controller = "Blog", area = "" }, new { title = "Manage" })
             </li>
             <li>
-                @Html.ActionLink("Settings", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Settings", "Index", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
