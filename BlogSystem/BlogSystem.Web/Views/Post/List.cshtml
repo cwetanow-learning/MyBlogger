@@ -8,13 +8,13 @@
 
 @if (Model.ByRating)
 {
-    @Html.ActionLink("Filter by date", "List", new { controller = "Post", byDate = true }, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Filter by date", "List", new { controller = "Post", byDate = true, byRating = false }, new { @class = "btn btn-primary btn-lg" })
     <hr />
     @Html.Action("TopPosts", new { controller = "Post", count = GlobalConstants.ListPostCount })
 }
 else
 {
-    @Html.ActionLink("Filter by rating", "List", new { controller = "Post", byRating = true }, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Filter by rating", "List", new { controller = "Post", byRating = true, byDate = false }, new { @class = "btn btn-primary btn-lg" })
     <hr />
     @Html.Action("LatestPosts", new { controller = "Post", count = GlobalConstants.ListPostCount })
 }

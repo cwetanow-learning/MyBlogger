@@ -22,7 +22,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Posts", "List", new { controller = "Post", byDate = true })</li>
+                    <li>@Html.ActionLink("Posts", "List", new { controller = "Post", byDate = true,byRating=false })</li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
 
                     @if (this.User.Identity.IsAuthenticated)

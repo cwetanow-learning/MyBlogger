@@ -15,7 +15,13 @@ namespace BlogSystem.Web
 
             routes.MapRoute(
                 name: null,
-                url: "Post/{postId}",
+                url: "Post/List/{byDate}-{byRating}",
+                defaults: new { controller = "Post", action = "List"}
+                );
+
+            routes.MapRoute(
+                name: null,
+                url: "Posts/{postId}",
                 defaults: new { controller = "Post", action = "PostView" }
 
             );
