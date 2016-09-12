@@ -4,5 +4,4 @@ Blog system with users, which can read other posts and post themselves. Written 
 TODO:
 - Routing fix
 - Search - by user or title
-- Administration area - CRUD on users
 - Pagenation
