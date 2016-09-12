@@ -75,8 +75,13 @@ namespace BlogSystem.Web.Controllers
                 var user = await this.UserManager.FindAsync(model.Username, model.Password);
                 if (user != null)
                 {
-                    await this.SignInAsync(user, model.RememberMe);
-                    return this.RedirectToLocal(returnUrl);
+                    if (!this.UserManager.IsLockedOut(user.Id))
+                    {
+                        await this.SignInAsync(user, model.RememberMe);
+                        return this.RedirectToLocal(returnUrl);
+                    }
+
+                    ModelState.AddModelError(string.Empty, "USER IS BANNED.");
                 }
                 else
                 {
