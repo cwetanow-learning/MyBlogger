@@ -43,11 +43,11 @@ namespace BlogSystem.Web.Controllers
 
         public PartialViewResult RenderComments(IEnumerable<IComment> comments)
         {
-            var ids = comments.Select(x => x.CommentId);
+            var commentIds = comments.Select(x => x.CommentId);
 
             var result = this.repository.Comments
                 .Where(c=>!c.IsDeleted)
-                .Where(c => ids.Contains(c.CommentId))
+                .Where(c => commentIds.Contains(c.CommentId))
                 .OrderByDescending(x => x.Date)
                 .ToList();
 

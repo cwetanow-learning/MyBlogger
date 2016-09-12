@@ -1,0 +1,15 @@
+﻿@model BlogSystem.Web.Models.ProfileViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div id="posts">
+    @Html.Action("RenderComments", new { controller = "Comment", comments = Model.Comments })
+</div>
+
+<div id="comments">
+    @Html.Action("RenderComments", new { controller = "Comment", comments = Model.Comments })
+</div>
+
