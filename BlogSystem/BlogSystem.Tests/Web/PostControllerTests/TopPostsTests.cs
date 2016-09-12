@@ -21,6 +21,8 @@ namespace BlogSystem.Tests.Web
         {
             var mockedPost = new Mock<IPost>();
             mockedPost.SetupGet(p => p.IsDeleted).Returns(false);
+            var comments = new List<Comment>();
+            mockedPost.SetupGet(p => p.Comments).Returns(comments);
 
             var posts = new List<IPost> { mockedPost.Object };
 
@@ -37,12 +39,16 @@ namespace BlogSystem.Tests.Web
         [Test]
         public void TestTopPosts_PassFewerWithDatesPosts_ShouldFilterCorrectlyAndReturnAll()
         {
+            var comments = new List<Comment>();
+
             var mockedPost = new Mock<IPost>();
             mockedPost.SetupGet(p => p.IsDeleted).Returns(false);
             mockedPost.SetupGet(p => p.Date).Returns(DateTime.Now);
+            mockedPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedSecondPost = new Mock<IPost>();
             mockedSecondPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedSecondPost.SetupGet(p => p.Comments).Returns(comments);
 
             var posts = new List<IPost> { mockedSecondPost.Object, mockedPost.Object };
 
@@ -60,23 +66,31 @@ namespace BlogSystem.Tests.Web
         [Test]
         public void TestTopPosts_PassMorePostsWithOneDeleted_ShouldReturnCorrectPosts()
         {
+            var comments = new List<Comment>();
+
             var mockedPost = new Mock<IPost>();
             mockedPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedSecondPost = new Mock<IPost>();
             mockedSecondPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedSecondPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedThirdPost = new Mock<IPost>();
             mockedThirdPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedThirdPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedFourthPost = new Mock<IPost>();
             mockedFourthPost.SetupGet(p => p.IsDeleted).Returns(true);
+            mockedFourthPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedFifthPost = new Mock<IPost>();
             mockedFifthPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedFifthPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedSixthPost = new Mock<IPost>();
             mockedSixthPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedSixthPost.SetupGet(p => p.Comments).Returns(comments);
 
             var posts = new List<IPost> {
                 mockedSecondPost.Object,
@@ -105,23 +119,31 @@ namespace BlogSystem.Tests.Web
         [Test]
         public void TestTopPosts_PassMorePosts_ShouldReturn5()
         {
+            var comments = new List<Comment>();
+
             var mockedPost = new Mock<IPost>();
             mockedPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedSecondPost = new Mock<IPost>();
             mockedSecondPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedSecondPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedThirdPost = new Mock<IPost>();
             mockedThirdPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedThirdPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedFourthPost = new Mock<IPost>();
-            mockedFourthPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedFourthPost.SetupGet(p => p.IsDeleted).Returns(true);
+            mockedFourthPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedFifthPost = new Mock<IPost>();
             mockedFifthPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedFifthPost.SetupGet(p => p.Comments).Returns(comments);
 
             var mockedSixthPost = new Mock<IPost>();
             mockedSixthPost.SetupGet(p => p.IsDeleted).Returns(false);
+            mockedSixthPost.SetupGet(p => p.Comments).Returns(comments);
 
             var posts = new List<IPost> {
                 mockedSecondPost.Object,
