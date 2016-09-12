@@ -22,8 +22,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Posts", "List", new { controller = "Post", byDate = true,byRating=false })</li>
-
+                    <li>@Html.ActionLink("Newest", "List", new { controller = "Post", byDate = true, byRating = false })</li>
+                    <li>@Html.ActionLink("Hottest", "List", new { controller = "Post", byDate = false, byRating = true })</li>
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("My Blog", "Index", "Blog")</li>
