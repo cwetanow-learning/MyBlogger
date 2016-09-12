@@ -6,13 +6,16 @@
 <div class="media">
     <div class="media-body">
         <h4 class="media-heading">
-            @Model.Author.Name
+            @Html.ActionLink(@Model.Author.Name,
+           "Index",
+           new { controller = "Profile", userId = Model.Author.Id })
+
             <small>@String.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</small>
         </h4>
         @Model.CommentText
         @if (this.User.Identity.GetUserId() == Model.Author.Id ||
-                    Model.Author.Id == Model.Post.Author.Id ||
-                    this.User.IsInRole(GlobalConstants.AdministratorRole))
+                            Model.Author.Id == Model.Post.Author.Id ||
+                            this.User.IsInRole(GlobalConstants.AdministratorRole))
         {
             @Html.ActionLink(" ", "Delete",
            new { controller = "Comment", commentId = Model.CommentId, postId = Model.Post.PostId },

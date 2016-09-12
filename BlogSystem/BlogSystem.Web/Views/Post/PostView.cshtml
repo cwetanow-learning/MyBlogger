@@ -30,7 +30,10 @@
 
         <!-- Author -->
         <p class="lead">
-            by <a href="#">@Model.Author.UserName</a>
+           @Html.ActionLink(Model.Author.UserName,
+           "Index",
+           new { controller = "Profile", userId = Model.Author.Id },
+           new { @class = "text-right" })
         </p>
 
         <hr>

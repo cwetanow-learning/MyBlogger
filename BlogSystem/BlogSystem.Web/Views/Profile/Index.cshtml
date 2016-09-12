@@ -4,6 +4,16 @@
     ViewBag.Title = "Index";
 }
 
+<div class="jumbotron">
+    <h1>@Model.User.Name</h1>
+    <p class="lead">Total posts: @Model.Posts.Count()</p>
+    <p class="lead">Commented on: @Model.Comments.Count()</p>
+    <p>
+        
+
+    </p>
+</div>
+
 <div>
     <a id="postsToggle" class="btn btn-primary">Posts</a>
 
