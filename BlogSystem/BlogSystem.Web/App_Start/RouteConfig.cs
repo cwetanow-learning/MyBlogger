@@ -14,6 +14,12 @@ namespace BlogSystem.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name:null,
+                url:"Profile/{username}",
+                defaults:new { controller="Profile", action="Index"}
+                );
+
+            routes.MapRoute(
                 name: null,
                 url: "Post/List/{byDate}-{byRating}",
                 defaults: new { controller = "Post", action = "List"}

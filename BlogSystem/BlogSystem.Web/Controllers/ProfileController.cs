@@ -21,11 +21,11 @@ namespace BlogSystem.Web.Controllers
             this.commentRepository = commentRepo;
         }
 
-        public ActionResult Index(string userId)
+        public ActionResult Index(string username)
         {
-            var user = this.UserManager.FindById(userId);
-            var comments = this.GetUserComments(userId);
-            var posts = this.GetUserPosts(userId);
+            var user = this.UserManager.FindByName(username);
+            var comments = this.GetUserComments(user.Id);
+            var posts = this.GetUserPosts(user.Id);
 
             var model = new ProfileViewModel { User = user, Comments = comments, Posts = posts };
 

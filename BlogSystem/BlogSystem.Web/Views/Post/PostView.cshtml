@@ -32,7 +32,7 @@
         <p class="lead">
            @Html.ActionLink(Model.Author.UserName,
            "Index",
-           new { controller = "Profile", userId = Model.Author.Id },
+           new { controller = "Profile", username = Model.Author.Name },
            new { @class = "text-right" })
         </p>
 
