@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@using BlogSystem.Domain.Utils
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -9,6 +11,12 @@
             <li>
                 @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", new { controller = "Profile", username = this.User.Identity.GetUserName() })
             </li>
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRole))
+            {
+                <li>
+                    @Html.ActionLink("Admin", "Index", "Admin", new { area = "Administration" }, null)
+                </li>
+            }
             <li>
                 @Html.ActionLink("Create post", "Create", new { controller = "Blog" }, new { title = "Manage" })
             </li>

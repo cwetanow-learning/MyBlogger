@@ -1,14 +1,8 @@
-﻿using BlogSystem.Domain.Concrete;
-using BlogSystem.Domain.Contracts;
+﻿using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Controllers.Abstract;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BlogSystem.Web.Controllers
