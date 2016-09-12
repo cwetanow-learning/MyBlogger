@@ -45,5 +45,23 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
 
             return this.RedirectToAction("Index");
         }
+
+        public ActionResult Adminise(string id)
+        {
+            var user = this.UserManager.FindById(id);
+
+            this.UserManager.AddToRole(id, GlobalConstants.AdministratorRole);
+
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult Unadmin(string id)
+        {
+            var user = this.UserManager.FindById(id);
+
+            this.UserManager.RemoveFromRole(id, GlobalConstants.AdministratorRole);
+
+            return this.RedirectToAction("Index");
+        }
     }
 }
