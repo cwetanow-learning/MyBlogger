@@ -28,7 +28,7 @@ namespace BlogSystem.Tests.Web.PostControllerTests
 
             var controller = new PostController(mockedRepository.Object);
 
-            var result = controller.LatestPosts().Model;
+            var result = controller.LatestPosts(GlobalConstants.HomePageTopPostsCount).Model;
 
             Assert.AreEqual(posts, result);
         }
@@ -68,7 +68,7 @@ namespace BlogSystem.Tests.Web.PostControllerTests
 
             var controller = new PostController(mockedRepository.Object);
 
-            var result = controller.LatestPosts().Model as IEnumerable<IPost>;
+            var result = controller.LatestPosts(GlobalConstants.HomePageTopPostsCount).Model as IEnumerable<IPost>;
 
             var expected = posts.Where(p => !p.IsDeleted)
                  .Where(p => !p.IsDeleted)
@@ -113,7 +113,7 @@ namespace BlogSystem.Tests.Web.PostControllerTests
 
             var controller = new PostController(mockedRepository.Object);
 
-            var result = controller.LatestPosts().Model as IEnumerable<IPost>;
+            var result = controller.LatestPosts(GlobalConstants.HomePageTopPostsCount).Model as IEnumerable<IPost>;
 
             var expected = posts.Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Rating)

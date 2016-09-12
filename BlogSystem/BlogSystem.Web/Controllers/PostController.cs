@@ -1,12 +1,9 @@
 ﻿using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Contracts.Entities;
-using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BlogSystem.Web.Controllers
@@ -20,24 +17,24 @@ namespace BlogSystem.Web.Controllers
             this.postRepository = repo;
         }
 
-        public PartialViewResult TopPosts()
+        public PartialViewResult TopPosts(int count)
         {
             var topPosts = this.postRepository.Posts
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Rating)
-                .ThenByDescending(p=>p.Comments.Count)
+                .ThenByDescending(p => p.Comments.Count)
                 .ThenByDescending(p => p.Date)
-                .Take(GlobalConstants.HomePageTopPostsCount);
+                .Take(count);
 
             return this.AllPosts(topPosts);
         }
 
-        public PartialViewResult LatestPosts()
+        public PartialViewResult LatestPosts(int count)
         {
             var latestPosts = this.postRepository.Posts
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Date)
-                .Take(GlobalConstants.HomePageTopPostsCount);
+                .Take(count);
 
             return this.AllPosts(latestPosts);
         }
@@ -50,7 +47,7 @@ namespace BlogSystem.Web.Controllers
         public ViewResult PostView(int postId)
         {
             var post = this.postRepository.Posts.FirstOrDefault(p => p.PostId == postId);
-            
+
             return this.View(post);
         }
 
@@ -59,6 +56,11 @@ namespace BlogSystem.Web.Controllers
             var postRating = this.postRepository.ChangeRating(id, rating);
 
             return this.PartialView(postRating);
+        }
+
+        public ViewResult List(ListPostViewModel model)
+        {
+            return this.View(model);
         }
     }
 }

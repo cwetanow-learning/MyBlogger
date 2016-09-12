@@ -1,0 +1,16 @@
+﻿@using BlogSystem.Domain.Utils
+
+@model BlogSystem.Web.Models.ListPostViewModel
+
+@{
+    ViewBag.Title = "List";
+}
+
+@if (Model.ByDate)
+{
+    @Html.Action("LatestPosts", new { controller = "Post", count = GlobalConstants.ListPostCount })
+}
+else if (Model.ByRating)
+{
+    @Html.Action("TopPosts", new { controller = "Post", count = GlobalConstants.ListPostCount })
+}
