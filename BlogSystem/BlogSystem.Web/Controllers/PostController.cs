@@ -58,8 +58,10 @@ namespace BlogSystem.Web.Controllers
             return this.PartialView(postRating);
         }
 
-        public ViewResult List(ListPostViewModel model)
+        public ViewResult List(bool byDate = false, bool byRating = false)
         {
+            var model = new ListPostViewModel { ByDate = byDate, ByRating = byRating };
+
             return this.View(model);
         }
     }
