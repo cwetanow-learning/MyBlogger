@@ -35,7 +35,8 @@ namespace BlogSystem.Web.Controllers
         private IEnumerable<IPost> GetUserPosts(string userId)
         {
             var result = this.postRepository.Posts
-                .Where(p => p.Author.Id == userId);
+                .Where(p => p.Author.Id == userId)
+                .Where(p => !p.IsDeleted);
 
             return result;
         }
@@ -43,7 +44,8 @@ namespace BlogSystem.Web.Controllers
         private IEnumerable<IComment> GetUserComments(string userId)
         {
             var result = this.commentRepository.Comments
-               .Where(p => p.Author.Id == userId);
+               .Where(p => p.Author.Id == userId)
+               .Where(p => !p.IsDeleted);
 
             return result;
         }
