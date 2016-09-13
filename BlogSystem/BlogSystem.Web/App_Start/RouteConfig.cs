@@ -15,6 +15,12 @@ namespace BlogSystem.Web
 
             routes.MapRoute(
                 name: null,
+                url: "Blog/{page}",
+                defaults: new { controller = "Blog", action = "Index" }
+                );
+
+            routes.MapRoute(
+                name: null,
                 url: "Profile/{username}",
                 defaults: new { controller = "Profile", action = "Index" }
                 );

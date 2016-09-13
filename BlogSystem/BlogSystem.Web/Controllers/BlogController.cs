@@ -2,6 +2,7 @@
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Controllers.Abstract;
+using PagedList;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,9 +18,11 @@ namespace BlogSystem.Web.Controllers
             this.repository = repo;
         }
 
-        public ViewResult Index()
+        public ViewResult Index(int page = 1)
         {
-            var posts = this.repository.Posts.Where(p => p.Author.Id == this.CurrentUser.Id && !p.IsDeleted);
+            var posts = this.repository.Posts
+                .Where(p => p.Author.Id == this.CurrentUser.Id && !p.IsDeleted)
+                .ToPagedList(page, GlobalConstants.ListPostCount);
 
             return this.View(posts);
         }
