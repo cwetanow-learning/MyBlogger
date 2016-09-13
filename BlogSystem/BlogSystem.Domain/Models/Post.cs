@@ -1,10 +1,8 @@
 ﻿using BlogSystem.Domain.Contracts.Entities;
 using System;
 using System.Collections.Generic;
-using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Models.Abstract;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogSystem.Domain.Models
 {
