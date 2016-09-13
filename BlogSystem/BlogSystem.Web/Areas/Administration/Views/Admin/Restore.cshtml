@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BlogSystem.Domain.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Restore";
+}
+
+<h2>Restore</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+
+            <td>
+                @using (Html.BeginForm("Restore", "Admin"))
+                {
+                    @Html.Hidden("userId", item.Id)
+                    <input type="submit"
+                           class="btn btn-default btn-xs"
+                           value="Restore" />
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

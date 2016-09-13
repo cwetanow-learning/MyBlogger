@@ -26,6 +26,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
 
             var users = this.UserManager.Users
                 .ToList();
+
             users = users
                 .Where(u => !this.UserManager.IsLockedOut(u.Id))
                 .ToList();
@@ -60,5 +61,29 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
 
             return this.RedirectToAction("Index");
         }
+
+        public ViewResult Restore()
+        {
+            var users = this.UserManager.Users
+                .ToList();
+
+            users = users
+                .Where(u => this.UserManager.IsLockedOut(u.Id))
+                .ToList();
+
+            return this.View(users);
+        }
+
+        [HttpPost]
+        public ActionResult Restore(string userId)
+        {
+            var user = this.UserManager.FindById(userId);
+
+            user.LockoutEndDateUtc = null;
+            this.UserManager.Update(user);
+
+            return this.RedirectToAction("Index");
+        }
+
     }
 }
