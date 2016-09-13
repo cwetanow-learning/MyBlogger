@@ -1,0 +1,27 @@
+﻿@model BlogSystem.Web.Models.SearchViewModel
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+@using (Ajax.BeginForm("SearchPosts",
+                                                  new { controller = "Search" },
+                                                  new AjaxOptions
+                                                  {
+                                                      InsertionMode = InsertionMode.Replace,
+                                                      UpdateTargetId = "results",
+                                                      HttpMethod = "POST"
+                                                  }))
+{
+    @Html.TextBoxFor(m => m.Pattern, new { @class = "form-control", rows = 5 });
+    @Html.ValidationSummary()
+
+    <input type="submit" class="btn btn-primary" id="submit" value="Search" />
+}
+
+
+<hr />
+<div id="results">
+
+</div>

@@ -40,6 +40,11 @@ namespace BlogSystem.Web.Controllers
 
         public PartialViewResult AllPosts(IEnumerable<IPost> posts, int page = 1)
         {
+            if (posts == null)
+            {
+                posts = TempData["posts"] as IEnumerable<IPost>;
+            }
+
             posts = posts.ToPagedList(page, GlobalConstants.ListPostCount);
 
             return this.PartialView("_TopPostsPartial", posts);
