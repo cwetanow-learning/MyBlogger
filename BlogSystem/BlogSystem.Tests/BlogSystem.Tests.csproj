@@ -122,14 +122,19 @@
     <Compile Include="Web\BlogControllerTests\CreateTests.cs" />
     <Compile Include="Web\BlogControllerTests\DeleteTests.cs" />
     <Compile Include="Web\BlogControllerTests\EditTests.cs" />
+    <Compile Include="Web\BlogControllerTests\InitialiseTests.cs" />
     <Compile Include="Web\CommentControllerTests\DeleteTests.cs" />
+    <Compile Include="Web\CommentControllerTests\InitialiseTests.cs" />
     <Compile Include="Web\CommentControllerTests\TestCommentPost.cs" />
     <Compile Include="Web\PostControllerTests\AllPostsTests.cs" />
+    <Compile Include="Web\PostControllerTests\InitialiseTests.cs" />
     <Compile Include="Web\PostControllerTests\ListTests.cs" />
     <Compile Include="Web\PostControllerTests\PostViewTests.cs" />
     <Compile Include="Web\PostControllerTests\RatingTests.cs" />
     <Compile Include="Web\PostControllerTests\RecentPostsTests.cs" />
     <Compile Include="Web\PostControllerTests\TopPostsTests.cs" />
+    <Compile Include="Web\ProfileControllerTests\GetUserPostsTests.cs" />
+    <Compile Include="Web\ProfileControllerTests\InitialiseTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
