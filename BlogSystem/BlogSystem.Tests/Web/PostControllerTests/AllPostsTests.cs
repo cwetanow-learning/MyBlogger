@@ -50,7 +50,7 @@ namespace BlogSystem.Tests.Web.PostControllerTests
 
             var controller = new PostController(mockedRepository.Object);
 
-            var result = controller.AllPosts(posts);
+            var result = controller.AllPosts(posts, posts.Count);
             var expectedPosts = result.Model as IEnumerable<IPost>;
             var expectedView = result.ViewName;
 

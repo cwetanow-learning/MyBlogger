@@ -9,7 +9,7 @@
     <p class="lead">Total posts: @Model.Posts.Count()</p>
     <p class="lead">Commented on: @Model.Comments.Count()</p>
     <p>
-        
+
 
     </p>
 </div>
@@ -19,7 +19,7 @@
 
     <div id="posts">
         <hr />
-        @Html.Action("AllPosts", new { controller = "Post", posts = Model.Posts })
+        @Html.Action("AllPosts", new { controller = "Post", posts = Model.Posts, count = Model.Posts.Count() })
     </div>
     <hr />
     <a id="commentsToggle" class="btn btn-primary">Comments</a>

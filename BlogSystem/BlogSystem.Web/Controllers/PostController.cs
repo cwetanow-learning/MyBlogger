@@ -26,7 +26,7 @@ namespace BlogSystem.Web.Controllers
                 .ThenByDescending(p => p.Comments.Count)
                 .ThenByDescending(p => p.Date);
 
-            return this.AllPosts(topPosts, page);
+            return this.AllPosts(topPosts, count, page);
         }
 
         public PartialViewResult LatestPosts(int count, int page = 1)
@@ -35,17 +35,17 @@ namespace BlogSystem.Web.Controllers
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Date);
 
-            return this.AllPosts(latestPosts, page);
+            return this.AllPosts(latestPosts, count, page);
         }
 
-        public PartialViewResult AllPosts(IEnumerable<IPost> posts, int page = 1)
+        public PartialViewResult AllPosts(IEnumerable<IPost> posts, int count, int page = 1)
         {
             if (posts == null)
             {
                 posts = TempData["posts"] as IEnumerable<IPost>;
             }
 
-            posts = posts.ToPagedList(page, GlobalConstants.ListPostCount);
+            posts = posts.ToPagedList(page, count);
 
             return this.PartialView("_TopPostsPartial", posts);
         }
