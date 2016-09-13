@@ -29,7 +29,8 @@ namespace BlogSystem.Web.Controllers
 
         public ViewResult Edit(int postId)
         {
-            var post = this.repository.Posts.FirstOrDefault(p => p.PostId == postId && !p.IsDeleted);
+            var post = this.repository.Posts
+                .FirstOrDefault(p => p.PostId == postId && !p.IsDeleted);
 
             return this.View(post);
         }
@@ -40,11 +41,11 @@ namespace BlogSystem.Web.Controllers
             if (ModelState.IsValid)
             {
                 post.Date = DateHelper.GetCurrentTime();
+
                 var authorId = this.CurrentUser.Id;
                 post.Author = new ApplicationUser { Id = authorId };
 
                 this.repository.SavePost(post);
-                this.TempData["message"] = $"{post.Text} has been saved !";
 
                 return RedirectToAction("Index");
             }

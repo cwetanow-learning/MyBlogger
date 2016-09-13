@@ -1,4 +1,5 @@
 ﻿using BlogSystem.Domain.Contracts;
+using BlogSystem.Domain.Utils.Extensions;
 using BlogSystem.Web.Controllers.Abstract;
 using BlogSystem.Web.Models;
 using System;
@@ -30,14 +31,14 @@ namespace BlogSystem.Web.Controllers
         {
             var pattern = model.Pattern;
 
-            if (string.IsNullOrEmpty(pattern) || string.IsNullOrWhiteSpace(pattern))
+            if (pattern.IsEmpty())
             {
                 return null;
             }
 
             var result = this.repository.Posts
                 .Where(p => !p.IsDeleted)
-                .Where(p => p.Title.Contains(pattern) || p.Subtitle.Contains(pattern) || p.Text.Contains(pattern));
+                .Where(p => p.PostContainsPattern(pattern));
 
             TempData["posts"] = result;
 
