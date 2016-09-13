@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<BlogSystem.Domain.Models.ApplicationUser>
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin;
 
 @{
     ViewBag.Title = "Index";
@@ -21,11 +23,16 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
+        <th>Is Admin:</th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
+
+        var manager = this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        var role = manager.GetRoles(item.Id).FirstOrDefault();
+
         <tr>
             <td>
                 @Html.ActionLink("See", "Index", new { controller = "Profile", area = "", username = item.UserName }, new { @class = "btn btn-primary" })
@@ -39,10 +46,29 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-
             <td>
-                @Html.ActionLink("Make Admin", "Adminise", new { id = item.Id }) |
-                @Html.ActionLink("Remove Admin", "Unadmin", new { id = item.Id }) |
+                @if (role == BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole)
+                {
+                    @:Yes
+
+                }
+                else
+                {
+                    @:No
+                }
+            </td>
+            <td>
+                @if (role == BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole)
+                {
+                    @Html.ActionLink("Remove Admin", "Unadmin", new { id = item.Id }) @:|
+
+                }
+                else
+                {
+                    @Html.ActionLink("Make Admin", "Adminise", new { id = item.Id }) @:|
+                }
+
+
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>

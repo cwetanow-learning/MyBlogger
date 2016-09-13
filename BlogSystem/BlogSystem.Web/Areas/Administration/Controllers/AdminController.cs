@@ -1,10 +1,7 @@
 ﻿using BlogSystem.Domain.Contracts;
-using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Controllers.Abstract;
 using Microsoft.AspNet.Identity;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
