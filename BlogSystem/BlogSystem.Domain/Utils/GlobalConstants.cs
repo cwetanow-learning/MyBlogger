@@ -16,5 +16,7 @@
         public static string AdministratorRole = "Admin";
 
         public static int YearsBan = 200;
+
+        public static int Zero = 0;
     }
 }

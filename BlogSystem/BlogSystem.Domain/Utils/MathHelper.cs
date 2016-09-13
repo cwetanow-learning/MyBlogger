@@ -4,12 +4,12 @@
     {
         public static bool IsPositive(int value)
         {
-            return value > 0;
+            return value > GlobalConstants.Zero;
         }
 
         public static bool IsNegative(int value)
         {
-            return value < 0;
+            return value < GlobalConstants.Zero;
         }
     }
 }
