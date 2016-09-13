@@ -28,7 +28,7 @@ namespace BlogSystem.Domain.Concrete
         {
             var post = this.context.Posts.Find(postId);
 
-            if (post.Rating == GlobalConstants.MinimumPostRating && value < 0)
+            if (post.Rating == GlobalConstants.MinimumPostRating && MathHelper.IsNegative(value))
             {
                 return post.Rating;
             }
@@ -42,7 +42,8 @@ namespace BlogSystem.Domain.Concrete
 
         public IPost DeletePost(int postId)
         {
-            var postToDelete = this.Posts.FirstOrDefault(p => p.PostId == postId);
+            var postToDelete = this.Posts
+                .FirstOrDefault(p => p.PostId == postId);
 
             if (postToDelete != null)
             {
