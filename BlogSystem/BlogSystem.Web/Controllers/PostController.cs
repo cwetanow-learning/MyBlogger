@@ -2,6 +2,7 @@
 using BlogSystem.Domain.Contracts.Entities;
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Models;
+using PagedList;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -23,25 +24,24 @@ namespace BlogSystem.Web.Controllers
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.Rating)
                 .ThenByDescending(p => p.Comments.Count)
-                .ThenByDescending(p => p.Date)
-                .Take(count);
+                .ThenByDescending(p => p.Date);
 
-            return this.AllPosts(topPosts);
+            return this.AllPosts(topPosts, page);
         }
 
         public PartialViewResult LatestPosts(int count, int page = 1)
         {
             var latestPosts = this.postRepository.Posts
                 .Where(p => !p.IsDeleted)
-                .OrderByDescending(p => p.Date)
-                .Skip((page - 1) * GlobalConstants.ListPostCount)
-                .Take(count);
+                .OrderByDescending(p => p.Date);
 
-            return this.AllPosts(latestPosts);
+            return this.AllPosts(latestPosts, page);
         }
 
-        public PartialViewResult AllPosts(IEnumerable<IPost> posts)
+        public PartialViewResult AllPosts(IEnumerable<IPost> posts, int page = 1)
         {
+            posts = posts.ToPagedList(page, GlobalConstants.ListPostCount);
+
             return this.PartialView("_TopPostsPartial", posts);
         }
 

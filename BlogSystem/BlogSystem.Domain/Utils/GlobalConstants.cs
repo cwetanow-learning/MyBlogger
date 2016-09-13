@@ -4,6 +4,8 @@
     {
         public static int HomePageTopPostsCount = 3;
         public static int ListPostCount = 10;
+        public static int PostCommentsCount = 20;
+        public static int AdminPageUserListCount = 10;
 
         public static int IdOfEntityNotInDB = 0;
 
@@ -12,7 +14,5 @@
         public static int LikePostValue = 1;
 
         public static string AdministratorRole = "Admin";
-
-        public static int AdminPageUserListCount = 10;
     }
 }

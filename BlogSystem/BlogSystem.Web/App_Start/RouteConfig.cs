@@ -15,19 +15,13 @@ namespace BlogSystem.Web
 
             routes.MapRoute(
                 name: null,
-                url: "Blog/{page}",
-                defaults: new { controller = "Blog", action = "Index" }
-                );
-
-            routes.MapRoute(
-                name: null,
                 url: "Profile/{username}",
                 defaults: new { controller = "Profile", action = "Index" }
                 );
 
             routes.MapRoute(
                 name: null,
-                url: "Post/List/{byDate}-{byRating}",
+                url: "Post/List/{page}/{byDate}-{byRating}",
                 defaults: new { controller = "Post", action = "List", page = 1 }
                 );
 

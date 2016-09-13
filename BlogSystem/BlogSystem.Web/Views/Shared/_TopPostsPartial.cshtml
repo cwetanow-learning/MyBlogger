@@ -1,6 +1,17 @@
-﻿@model IEnumerable<BlogSystem.Domain.Contracts.Entities.IPost>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<BlogSystem.Domain.Contracts.Entities.IPost>
 
 @foreach (var post in Model)
 {
     Html.RenderPartial("_ShortenedPostPartial", post);
 }
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("List",
+    new { page = page }))
+
+
+
