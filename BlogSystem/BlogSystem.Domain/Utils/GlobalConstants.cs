@@ -14,5 +14,7 @@
         public static int LikePostValue = 1;
 
         public static string AdministratorRole = "Admin";
+
+        public static int YearsBan = 200;
     }
 }

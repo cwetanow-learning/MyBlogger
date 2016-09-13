@@ -8,5 +8,10 @@ namespace BlogSystem.Domain.Utils
         {
             return DateTime.Now;
         }
+
+        public static DateTime BanUser()
+        {
+            return GetCurrentTime().AddYears(GlobalConstants.YearsBan);
+        }
     }
 }

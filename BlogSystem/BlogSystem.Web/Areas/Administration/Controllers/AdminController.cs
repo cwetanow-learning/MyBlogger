@@ -36,7 +36,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         public ActionResult Delete(string id)
         {
             var user = this.UserManager.FindById(id);
-            user.LockoutEndDateUtc = DateHelper.GetCurrentTime().AddYears(200);
+            user.LockoutEndDateUtc = DateHelper.BanUser();
 
             this.UserManager.Update(user);
 
