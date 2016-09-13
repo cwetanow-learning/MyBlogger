@@ -42,7 +42,7 @@ namespace BlogSystem.Web.Controllers
             return this.PartialView("RenderComments", comments);
         }
 
-        public PartialViewResult RenderComments(IEnumerable<IComment> comments)
+        public PartialViewResult RenderComments(IEnumerable<IComment> comments, int page = 1)
         {
             var commentIds = comments.Select(x => x.CommentId);
 
