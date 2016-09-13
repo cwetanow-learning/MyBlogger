@@ -2,6 +2,7 @@
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Controllers.Abstract;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -20,18 +21,16 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             this.commentRepository = commentRepo;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             var currentDate = DateHelper.GetCurrentTime();
 
             var users = this.UserManager.Users
-                .ToList();
-
-            users = users
+                .ToList()
                 .Where(u => !this.UserManager.IsLockedOut(u.Id))
-                .ToList();
+                .ToPagedList(page, GlobalConstants.AdminPageUserListCount);
 
-            return View(users);
+            return this.View(users);
         }
 
         public ActionResult Delete(string id)
@@ -62,14 +61,12 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             return this.RedirectToAction("Index");
         }
 
-        public ViewResult Restore()
+        public ViewResult Restore(int page = 1)
         {
             var users = this.UserManager.Users
-                .ToList();
-
-            users = users
+                .ToList()
                 .Where(u => this.UserManager.IsLockedOut(u.Id))
-                .ToList();
+                .ToPagedList(page, GlobalConstants.AdminPageUserListCount);
 
             return this.View(users);
         }

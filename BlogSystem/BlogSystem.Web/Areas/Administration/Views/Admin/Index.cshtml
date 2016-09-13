@@ -1,6 +1,11 @@
-﻿@model IEnumerable<BlogSystem.Domain.Models.ApplicationUser>
+﻿@model IPagedList<BlogSystem.Domain.Models.ApplicationUser>
+
+@using PagedList;
+@using PagedList.Mvc;
 @using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity.Owin;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -14,14 +19,14 @@
             Profile:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            Username
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Name
         </th>
         <th>Is Admin:</th>
         <th></th>
@@ -75,5 +80,10 @@
     }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page = page }))
 
 @Html.ActionLink("Restore users", "Restore")
