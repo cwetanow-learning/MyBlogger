@@ -16,7 +16,7 @@
         <!-- Title -->
         <h1>@Model.Title</h1>
         @if (isAuthor ||
-                         this.User.IsInRole(BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole))
+                             this.User.IsInRole(BlogSystem.Domain.Utils.GlobalConstants.AdministratorRole))
         {
             @Html.ActionLink(" ", "Delete",
     new { controller = "Blog", postId = Model.PostId },
@@ -30,7 +30,7 @@
 
         <!-- Author -->
         <p class="lead">
-           @Html.ActionLink(Model.Author.UserName,
+            @Html.ActionLink(Model.Author.UserName,
            "Index",
            new { controller = "Profile", username = Model.Author.Name },
            new { @class = "text-right" })
@@ -42,7 +42,7 @@
 
         <hr>
         <p><span class="glyphicon glyphicon-star"></span> Rating: <span id="rating">@Model.Rating</span></p>
-        @if (!Model.Author.Name.Equals(this.User.Identity.Name))
+        @if (!Model.Author.Name.Equals(this.User.Identity.Name) && this.User.Identity.IsAuthenticated)
             {
             @Ajax.ActionLink(" ", "Rating",
        new { controller = "Post", id = Model.PostId, rating = BlogSystem.Domain.Utils.GlobalConstants.DislikePostValue },
