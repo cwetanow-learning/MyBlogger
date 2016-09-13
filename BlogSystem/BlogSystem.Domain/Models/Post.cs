@@ -41,16 +41,19 @@ namespace BlogSystem.Domain.Models
             get; set;
         }
 
+        [Required]
         public string Subtitle
         {
             get; set;
         }
 
+        [Required]
         public string Text
         {
             get; set;
         }
 
+        [Required]
         public string Title
         {
             get; set;

@@ -13,11 +13,13 @@ namespace BlogSystem.Domain.Models
             get; set;
         }
 
+        [Required]
         public string CommentText
         {
             get; set;
         }
 
+        [Required]
         public DateTime Date
         {
             get; set;

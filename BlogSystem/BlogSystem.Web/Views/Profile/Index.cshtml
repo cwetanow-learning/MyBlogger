@@ -15,19 +15,27 @@
 </div>
 
 <div>
-    <a id="postsToggle" class="btn btn-primary">Posts</a>
 
-    <div id="posts">
-        <hr />
-        @Html.Action("AllPosts", new { controller = "Post", posts = Model.Posts, count = Model.Posts.Count() })
-    </div>
+    @if (Model.Posts.Count() > 0)
+    {
+        <a id="postsToggle" class="btn btn-primary">Posts</a>
+        <div id="posts">
+            <hr />
+
+            @Html.Action("AllPosts", new { controller = "Post", posts = Model.Posts, count = Model.Posts.Count() })
+        </div>
+    }
+
     <hr />
-    <a id="commentsToggle" class="btn btn-primary">Comments</a>
+    @if (Model.Comments.Count() > 0)
+    {
+        <a id="commentsToggle" class="btn btn-primary">Comments</a>
 
-    <div id="comments">
-        <hr />
-        @Html.Action("RenderComments", new { controller = "Comment", comments = Model.Comments })
-    </div>
+        <div id="comments">
+            <hr />
+            @Html.Action("RenderComments", new { controller = "Comment", comments = Model.Comments })
+        </div>
+    }
 </div>
 
 
