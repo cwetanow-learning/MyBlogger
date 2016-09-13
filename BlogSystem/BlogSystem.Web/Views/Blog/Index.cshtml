@@ -15,11 +15,17 @@
 else
 {
     <h2>Latest posts</h2>
-        @Html.Action("AllPosts", new { controller = "Post", posts = Model })
+    @Html.Action("AllPosts", new { controller = "Post", posts = Model })
 
-    @:Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
+    <div class="pages">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page = page }))
-    }
+    </div>
+}
 
+<script>
+    $('#total').hide();
+</script>
