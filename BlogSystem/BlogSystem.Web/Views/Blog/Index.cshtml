@@ -15,7 +15,7 @@
 else
 {
     <h2>Latest posts</h2>
-    @Html.Action("AllPosts", new { controller = "Post", posts = Model })
+    @Html.Action("AllPosts", new { controller = "Post", posts = Model, count = BlogSystem.Domain.Utils.GlobalConstants.ListPostCount })
 
 
     <div class="pages">
