@@ -5,3 +5,4 @@ TODO:
 - Routing fix
 - Search - by user or title
 - Pagenation
+- Async everything
