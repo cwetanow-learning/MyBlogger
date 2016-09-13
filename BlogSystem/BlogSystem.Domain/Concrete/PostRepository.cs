@@ -1,9 +1,6 @@
 ﻿using BlogSystem.Domain.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Concrete.Abstract;
 using BlogSystem.Domain.Utils;
@@ -80,7 +77,7 @@ namespace BlogSystem.Domain.Concrete
                     postToEdit.Subtitle = post.Subtitle;
                     postToEdit.Date = post.Date;
 
-                    this.context.Entry(postToEdit).State = System.Data.Entity.EntityState.Modified;
+                    this.context.Entry(postToEdit).State = EntityState.Modified;
                     this.context.Entry(postToEdit).Reference(t => t.Author).Load();
                     this.context.Entry(postToEdit).Reference(t => t.Comments).Load();
                 }
