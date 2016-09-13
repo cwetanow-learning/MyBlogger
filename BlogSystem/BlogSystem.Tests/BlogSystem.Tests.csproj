@@ -133,8 +133,8 @@
     <Compile Include="Web\PostControllerTests\RatingTests.cs" />
     <Compile Include="Web\PostControllerTests\RecentPostsTests.cs" />
     <Compile Include="Web\PostControllerTests\TopPostsTests.cs" />
-    <Compile Include="Web\ProfileControllerTests\GetUserPostsTests.cs" />
     <Compile Include="Web\ProfileControllerTests\InitialiseTests.cs" />
+    <Compile Include="Web\SearchControllerTests\InitialiseTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
