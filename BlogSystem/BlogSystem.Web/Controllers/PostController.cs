@@ -1,6 +1,5 @@
 ﻿using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Contracts.Entities;
-using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Models;
 using PagedList;
 using System.Collections.Generic;

@@ -3,7 +3,6 @@ using BlogSystem.Domain.Contracts.Entities;
 using BlogSystem.Web.Controllers.Abstract;
 using BlogSystem.Web.Models;
 using Microsoft.AspNet.Identity;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;

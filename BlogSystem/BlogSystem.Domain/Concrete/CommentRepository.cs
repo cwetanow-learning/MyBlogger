@@ -1,14 +1,9 @@
 ﻿using BlogSystem.Domain.Concrete.Abstract;
 using BlogSystem.Domain.Contracts;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BlogSystem.Domain.Models;
 using System.Data.Entity;
 using BlogSystem.Domain.Contracts.Entities;
-using BlogSystem.Domain.Utils;
 
 namespace BlogSystem.Domain.Concrete
 {

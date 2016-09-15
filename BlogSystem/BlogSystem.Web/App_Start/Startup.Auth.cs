@@ -3,9 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using BlogSystem.Web.Models;
 using BlogSystem.Domain.Concrete;
 using BlogSystem.Domain.Models;
 

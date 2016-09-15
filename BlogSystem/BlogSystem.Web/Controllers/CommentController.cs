@@ -4,7 +4,6 @@ using BlogSystem.Domain.Models;
 using BlogSystem.Domain.Utils;
 using BlogSystem.Web.Controllers.Abstract;
 using BlogSystem.Web.Models;
-using PagedList;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
