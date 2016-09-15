@@ -3,5 +3,3 @@ Blog system with users, which can read other posts and post themselves. Written 
 
 TODO:
 - Fix rating system
-- Write more tests
-- Make UI beautiful
