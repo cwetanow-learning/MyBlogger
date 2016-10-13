@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using BlogSystem.Domain.Concrete;
 using System.Web.Mvc;
+using BlogSystem.Domain.Utils;
 
 namespace BlogSystem.Web.Infrastructure
 {
@@ -28,7 +29,7 @@ namespace BlogSystem.Web.Infrastructure
         private void AddBindings()
         {
             this.kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
-
+            this.kernel.Bind<IDateProvider>().To<DateProvider>();
             this.kernel.Bind<IPostRepository>().To<PostRepository>();
             this.kernel.Bind<ICommentRepository>().To<CommentRepository>();
         }
