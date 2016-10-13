@@ -22,7 +22,10 @@ namespace BlogSystem.Tests.Web.CommentControllerTests
 
             var mockedRepository = new Mock<ICommentRepository>();
 
-            var controller = new CommentController(mockedRepository.Object);
+            var mockedDateProvider = new Mock<IDateProvider>();
+            mockedDateProvider.Setup(x => x.GetCurrentDate()).Returns(It.IsAny<DateTime>());
+
+            var controller = new CommentController(mockedRepository.Object, mockedDateProvider.Object);
 
             controller.CommentPost(mockedModel.Object);
 

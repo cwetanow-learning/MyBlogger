@@ -19,7 +19,7 @@ namespace BlogSystem.Tests.Web.CommentControllerTests
         {
             var mockedRepository = new Mock<ICommentRepository>();
 
-            var controller = new CommentController(mockedRepository.Object);
+            var controller = new CommentController(mockedRepository.Object, null);
 
             controller.Delete(commentId, id);
 

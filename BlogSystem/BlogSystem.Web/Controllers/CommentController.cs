@@ -13,10 +13,12 @@ namespace BlogSystem.Web.Controllers
     public class CommentController : BaseController
     {
         private ICommentRepository repository;
+        private IDateProvider dateProvider;
 
-        public CommentController(ICommentRepository repo)
+        public CommentController(ICommentRepository repo, IDateProvider dateProvider)
         {
             this.repository = repo;
+            this.dateProvider = dateProvider;
         }
 
         [HttpPost]
@@ -25,7 +27,7 @@ namespace BlogSystem.Web.Controllers
             var comment = new Comment
             {
                 CommentText = commentWithPostId.Text,
-                Date = DateHelper.GetCurrentTime()
+                Date = this.dateProvider.GetCurrentDate()
             };
 
             var userId = this.GetCurrentUserId();

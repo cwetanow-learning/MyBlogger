@@ -12,10 +12,12 @@ namespace BlogSystem.Web.Controllers
     public class BlogController : BaseController
     {
         private IPostRepository repository;
+        private IDateProvider dateProvider;
 
-        public BlogController(IPostRepository repo)
+        public BlogController(IPostRepository repo, IDateProvider dateProvider)
         {
             this.repository = repo;
+            this.dateProvider = dateProvider;
         }
 
         public ViewResult Index(int page = 1)
@@ -40,7 +42,7 @@ namespace BlogSystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                post.Date = DateHelper.GetCurrentTime();
+                post.Date = this.dateProvider.GetCurrentDate();
 
                 var authorId = this.CurrentUser.Id;
                 post.Author = new ApplicationUser { Id = authorId };

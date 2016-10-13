@@ -15,7 +15,7 @@ namespace BlogSystem.Tests.Web.BlogControllerTests
         [Test]
         public void TestCreate_ShouldReturnNewPostAndCorrectView()
         {
-            var controller = new BlogController(null);
+            var controller = new BlogController(null, null);
 
             var result = controller.Create();
 

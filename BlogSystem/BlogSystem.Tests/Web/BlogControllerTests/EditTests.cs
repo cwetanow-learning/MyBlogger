@@ -50,7 +50,7 @@ namespace BlogSystem.Tests.Web.BlogControllerTests
             var mockedRepository = new Mock<IPostRepository>();
             mockedRepository.SetupGet(x => x.Posts).Returns(posts);
 
-            var controller = new BlogController(mockedRepository.Object);
+            var controller = new BlogController(mockedRepository.Object, null);
 
             var result = controller.Edit(id).Model as IPost;
 
@@ -94,7 +94,7 @@ namespace BlogSystem.Tests.Web.BlogControllerTests
             var mockedRepository = new Mock<IPostRepository>();
             mockedRepository.SetupGet(x => x.Posts).Returns(posts);
 
-            var controller = new BlogController(mockedRepository.Object);
+            var controller = new BlogController(mockedRepository.Object, null);
 
             var result = controller.Edit(id).Model as IPost;
 
@@ -108,7 +108,7 @@ namespace BlogSystem.Tests.Web.BlogControllerTests
         {
             var mockedPost = new Mock<Post>();
 
-            var controller = new BlogController(null);
+            var controller = new BlogController(null, null);
 
             controller.ModelState.AddModelError("Invalid", "Invalid");
 

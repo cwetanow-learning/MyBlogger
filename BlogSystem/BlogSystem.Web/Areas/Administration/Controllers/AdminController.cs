@@ -14,17 +14,17 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     {
         private IPostRepository postRepository;
         private ICommentRepository commentRepository;
+        private IDateProvider dateProvider;
 
-        public AdminController(IPostRepository postRepo, ICommentRepository commentRepo)
+        public AdminController(IPostRepository postRepo, ICommentRepository commentRepo, IDateProvider dateProvider)
         {
             this.postRepository = postRepo;
             this.commentRepository = commentRepo;
+            this.dateProvider = dateProvider;
         }
 
         public ActionResult Index(int page = 1)
         {
-            var currentDate = DateHelper.GetCurrentTime();
-
             var users = this.UserManager.Users
                 .ToList()
                 .Where(u => !this.UserManager.IsLockedOut(u.Id))
@@ -36,7 +36,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         public ActionResult Delete(string id)
         {
             var user = this.UserManager.FindById(id);
-            user.LockoutEndDateUtc = DateHelper.BanUser();
+            user.LockoutEndDateUtc = this.dateProvider.BannedUserTime();
 
             this.UserManager.Update(user);
 
@@ -81,6 +81,5 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
 
             return this.RedirectToAction("Index");
         }
-
     }
 }

@@ -19,7 +19,7 @@ namespace BlogSystem.Tests.Web.BlogControllerTests
         {
             var mockedRepository = new Mock<IPostRepository>();
 
-            var controller = new BlogController(mockedRepository.Object);
+            var controller = new BlogController(mockedRepository.Object, null);
 
             Assert.IsInstanceOf<BaseController>(controller);
         }
@@ -29,7 +29,7 @@ namespace BlogSystem.Tests.Web.BlogControllerTests
         {
             var mockedRepository = new Mock<IPostRepository>();
 
-            var controller = new BlogController(mockedRepository.Object);
+            var controller = new BlogController(mockedRepository.Object, null);
 
             Assert.IsNotNull(controller);
         }
