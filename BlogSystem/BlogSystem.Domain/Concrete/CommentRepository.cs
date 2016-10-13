@@ -9,6 +9,10 @@ namespace BlogSystem.Domain.Concrete
 {
     public class CommentRepository : BaseRepository, ICommentRepository
     {
+        public CommentRepository(IApplicationDbContext dbContext) : base(dbContext)
+        {
+        }
+
         public IEnumerable<IComment> Comments
         {
             get

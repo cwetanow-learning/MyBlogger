@@ -27,6 +27,8 @@ namespace BlogSystem.Web.Infrastructure
 
         private void AddBindings()
         {
+            this.kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
+
             this.kernel.Bind<IPostRepository>().To<PostRepository>();
             this.kernel.Bind<ICommentRepository>().To<CommentRepository>();
         }

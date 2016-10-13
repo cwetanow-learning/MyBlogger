@@ -11,6 +11,11 @@ namespace BlogSystem.Domain.Concrete
 {
     public class PostRepository : BaseRepository, IPostRepository
     {
+        public PostRepository(IApplicationDbContext dbContext)
+            : base(dbContext)
+        {
+        }
+
         public IEnumerable<IPost> Posts
         {
             get
@@ -76,10 +81,6 @@ namespace BlogSystem.Domain.Concrete
                     postToEdit.Text = post.Text;
                     postToEdit.Subtitle = post.Subtitle;
                     postToEdit.Date = post.Date;
-
-                    this.context.Entry(postToEdit).State = EntityState.Modified;
-                    this.context.Entry(postToEdit).Reference(t => t.Author).Load();
-                    this.context.Entry(postToEdit).Reference(t => t.Comments).Load();
                 }
             }
 

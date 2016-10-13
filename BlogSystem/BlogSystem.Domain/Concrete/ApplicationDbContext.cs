@@ -19,6 +19,11 @@ namespace BlogSystem.Domain.Concrete
             get; set;
         }
 
+        public void Save()
+        {
+            this.SaveChanges();
+        }
+
         public IDbSet<Post> Posts
         {
             get; set;

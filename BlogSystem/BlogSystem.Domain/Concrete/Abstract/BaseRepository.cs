@@ -1,14 +1,20 @@
-﻿using BlogSystem.Domain.Models;
+﻿using BlogSystem.Domain.Contracts;
+using BlogSystem.Domain.Models;
 
 namespace BlogSystem.Domain.Concrete.Abstract
 {
     public abstract class BaseRepository
     {
-        protected ApplicationDbContext context = new ApplicationDbContext();
+        protected IApplicationDbContext context;
+
+        protected BaseRepository(IApplicationDbContext dbContext)
+        {
+            this.context = dbContext;
+        }
 
         protected void SaveChanges()
         {
-            this.context.SaveChanges();
+            this.context.Save();
         }
 
         protected ApplicationUser GetUserById(string id)
