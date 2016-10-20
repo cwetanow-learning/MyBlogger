@@ -21,5 +21,9 @@ namespace BlogSystem.Domain.Contracts
         IEnumerable<IPost> GetUserPosts(string userId);
 
         IPost GetPostById(int postId);
+
+        IOrderedEnumerable<IPost> GetTopPosts();
+
+        IOrderedEnumerable<IPost> GetLatestPosts();
     }
 }

@@ -23,30 +23,12 @@ namespace BlogSystem.Web.Controllers
         public ActionResult Index(string username)
         {
             var user = this.UserManager.FindByName(username);
-            var comments = this.GetUserComments(user.Id);
-            var posts = this.GetUserPosts(user.Id);
+            var comments = this.commentRepository.GetUserComments(user.Id);
+            var posts = this.postRepository.GetUserPosts(user.Id);
 
             var model = new ProfileViewModel { User = user, Comments = comments, Posts = posts };
 
             return View(model);
-        }
-
-        private IEnumerable<IPost> GetUserPosts(string userId)
-        {
-            var result = this.postRepository.Posts
-                .Where(p => p.Author.Id == userId)
-                .Where(p => !p.IsDeleted);
-
-            return result;
-        }
-
-        private IEnumerable<IComment> GetUserComments(string userId)
-        {
-            var result = this.commentRepository.Comments
-               .Where(p => p.Author.Id == userId)
-               .Where(p => !p.IsDeleted);
-
-            return result;
         }
     }
 }

@@ -54,6 +54,14 @@ namespace BlogSystem.Domain.Concrete
             return comments;
         }
 
+        public IEnumerable<IComment> GetUserComments(string userId)
+        {
+            var comments = this.Comments
+                  .Where(p => p.Author.Id == userId && !p.IsDeleted);
+
+            return comments;
+        }
+
         public void WriteComment(Comment comment, int postId, string authorId)
         {
             var post = this.GetPostById(postId);

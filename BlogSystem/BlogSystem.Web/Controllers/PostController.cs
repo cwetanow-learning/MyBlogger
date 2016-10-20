@@ -19,20 +19,16 @@ namespace BlogSystem.Web.Controllers
 
         public PartialViewResult TopPosts(int count, int page = 1)
         {
-            var topPosts = this.postRepository.Posts
-                .Where(p => !p.IsDeleted)
-                .OrderByDescending(p => p.Rating)
-                .ThenByDescending(p => p.Comments.Count)
-                .ThenByDescending(p => p.Date);
+            var topPosts = this.postRepository.GetTopPosts()
+                .ToList();
 
             return this.AllPosts(topPosts, count, page);
         }
 
         public PartialViewResult LatestPosts(int count, int page = 1)
         {
-            var latestPosts = this.postRepository.Posts
-                .Where(p => !p.IsDeleted)
-                .OrderByDescending(p => p.Date);
+            var latestPosts = this.postRepository.GetLatestPosts()
+                .ToList();
 
             return this.AllPosts(latestPosts, count, page);
         }
@@ -51,7 +47,7 @@ namespace BlogSystem.Web.Controllers
 
         public ViewResult PostView(int postId)
         {
-            var post = this.postRepository.Posts.FirstOrDefault(p => p.PostId == postId);
+            var post = this.postRepository.GetPostById(postId);
 
             return this.View(post);
         }

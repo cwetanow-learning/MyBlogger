@@ -58,6 +58,34 @@ namespace BlogSystem.Domain.Concrete
             return post;
         }
 
+        public IOrderedEnumerable<IPost> GetTopPosts()
+        {
+            var topPosts = this.Posts
+               .Where(p => !p.IsDeleted)
+               .OrderByDescending(p => p.Rating)
+               .ThenByDescending(p => p.Comments.Count)
+               .ThenByDescending(p => p.Date);
+
+            return topPosts;
+        }
+
+        public IOrderedEnumerable<IPost> GetLatestPosts()
+        {
+            var latestPosts = this.Posts
+                .Where(p => !p.IsDeleted)
+                .OrderByDescending(p => p.Date);
+
+            return latestPosts;
+        }
+
+        public IPost FindPostById(int postId)
+        {
+            var post = this.Posts
+                .FirstOrDefault(p => p.PostId == postId);
+
+            return post;
+        }
+
         public IPost DeletePost(int postId)
         {
             var postToDelete = this.Posts

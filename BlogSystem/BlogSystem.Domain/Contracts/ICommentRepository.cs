@@ -15,5 +15,7 @@ namespace BlogSystem.Domain.Contracts
         IEnumerable<IComment> GetPostCommentsById(int postId);
 
         IEnumerable<IComment> GetCommentsFromIds(IEnumerable<int> commentIds);
+
+        IEnumerable<IComment> GetUserComments(string userId);
     }
 }
