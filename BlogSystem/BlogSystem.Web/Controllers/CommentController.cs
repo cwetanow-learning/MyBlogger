@@ -34,10 +34,7 @@ namespace BlogSystem.Web.Controllers
 
             this.repository.WriteComment(comment, commentWithPostId.PostId, userId);
 
-            var comments = this.repository.Comments
-                .Where(c => !c.IsDeleted)
-                .Where(c => c.Post.PostId == commentWithPostId.PostId)
-                .OrderByDescending(x => x.Date)
+            var comments = this.repository.GetPostCommentsById(commentWithPostId.PostId)
                 .ToList(); ;
 
             return this.PartialView("RenderComments", comments);
@@ -47,13 +44,10 @@ namespace BlogSystem.Web.Controllers
         {
             var commentIds = comments.Select(x => x.CommentId);
 
-            var result = this.repository.Comments
-                .Where(c => !c.IsDeleted)
-                .Where(c => commentIds.Contains(c.CommentId))
-                .OrderByDescending(x => x.Date)
+            var foundComments = this.repository.GetCommentsFromIds(commentIds)
                 .ToList();
 
-            return this.PartialView(result);
+            return this.PartialView(foundComments);
         }
 
         public ActionResult Delete(int commentId, int postId)

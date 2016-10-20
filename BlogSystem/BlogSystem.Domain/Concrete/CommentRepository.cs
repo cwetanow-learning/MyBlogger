@@ -3,6 +3,7 @@ using BlogSystem.Domain.Contracts;
 using System.Collections.Generic;
 using BlogSystem.Domain.Models;
 using System.Data.Entity;
+using System.Linq;
 using BlogSystem.Domain.Contracts.Entities;
 
 namespace BlogSystem.Domain.Concrete
@@ -35,6 +36,24 @@ namespace BlogSystem.Domain.Concrete
             this.SaveChanges();
         }
 
+        public IEnumerable<IComment> GetPostCommentsById(int postId)
+        {
+            var postComments = this.Comments
+                .Where(c => !c.IsDeleted && c.Post.PostId == postId)
+                .OrderByDescending(x => x.Date);
+
+            return postComments;
+        }
+
+        public IEnumerable<IComment> GetCommentsFromIds(IEnumerable<int> commentIds)
+        {
+            var comments = this.Comments
+                .Where(c => !c.IsDeleted && commentIds.Contains(c.CommentId))
+                .OrderByDescending(x => x.Date);
+
+            return comments;
+        }
+
         public void WriteComment(Comment comment, int postId, string authorId)
         {
             var post = this.GetPostById(postId);
@@ -48,5 +67,7 @@ namespace BlogSystem.Domain.Concrete
 
             this.SaveChanges();
         }
+
+
     }
 }

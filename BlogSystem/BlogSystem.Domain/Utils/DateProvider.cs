@@ -14,7 +14,7 @@ namespace BlogSystem.Domain.Utils
 
         public DateTime GetCurrentDate()
         {
-            var currentDate = DateTime.Now;
+            var currentDate = DateTime.UtcNow;
 
             return currentDate;
         }
