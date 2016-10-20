@@ -46,15 +46,13 @@ namespace BlogSystem.Tests.Web.PostControllerTests
             };
 
             var mockedRepository = new Mock<IPostRepository>();
-            mockedRepository.SetupGet(x => x.Posts).Returns(posts);
+            mockedRepository.Setup(x => x.GetPostById(id)).Returns(posts.FirstOrDefault(x => x.PostId == id));
 
             var controller = new PostController(mockedRepository.Object);
 
-            var result = controller.PostView(id).Model as IPost;
+            controller.PostView(id);
 
-            var expected = posts.FirstOrDefault(p => p.PostId == id);
-
-            Assert.AreEqual(expected, result);
+            mockedRepository.Verify(x => x.GetPostById(id), Times.Once);
         }
     }
 }
