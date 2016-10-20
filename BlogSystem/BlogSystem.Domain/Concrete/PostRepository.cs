@@ -42,6 +42,22 @@ namespace BlogSystem.Domain.Concrete
             return post.Rating;
         }
 
+        public IEnumerable<IPost> GetUserPosts(string userId)
+        {
+            var userPosts = this.Posts
+                .Where(x => x.Author.Id == userId && !x.IsDeleted);
+
+            return userPosts;
+        }
+
+        public IPost GetPostById(int postId)
+        {
+            var post = this.Posts
+                .FirstOrDefault(p => p.PostId == postId && !p.IsDeleted);
+
+            return post;
+        }
+
         public IPost DeletePost(int postId)
         {
             var postToDelete = this.Posts
@@ -86,5 +102,6 @@ namespace BlogSystem.Domain.Concrete
 
             this.SaveChanges();
         }
+
     }
 }

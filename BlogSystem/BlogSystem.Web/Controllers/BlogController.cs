@@ -22,8 +22,9 @@ namespace BlogSystem.Web.Controllers
 
         public ViewResult Index(int page = 1)
         {
-            var posts = this.repository.Posts
-                .Where(p => p.Author.Id == this.CurrentUser.Id && !p.IsDeleted)
+            var userId = this.GetCurrentUserId();
+
+            var posts = this.repository.GetUserPosts(userId)
                 .ToPagedList(page, GlobalConstants.ListPostCount);
 
             return this.View(posts);
@@ -31,8 +32,7 @@ namespace BlogSystem.Web.Controllers
 
         public ViewResult Edit(int postId)
         {
-            var post = this.repository.Posts
-                .FirstOrDefault(p => p.PostId == postId && !p.IsDeleted);
+            var post = this.repository.GetPostById(postId);
 
             return this.View(post);
         }
@@ -45,7 +45,7 @@ namespace BlogSystem.Web.Controllers
                 post.Date = this.dateProvider.GetCurrentDate();
 
                 var authorId = this.CurrentUser.Id;
-                
+
                 this.repository.SavePost(post, authorId);
 
                 return RedirectToAction("Index");
