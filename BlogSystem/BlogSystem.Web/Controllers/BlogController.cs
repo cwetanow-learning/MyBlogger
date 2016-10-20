@@ -45,9 +45,8 @@ namespace BlogSystem.Web.Controllers
                 post.Date = this.dateProvider.GetCurrentDate();
 
                 var authorId = this.CurrentUser.Id;
-                post.Author = new ApplicationUser { Id = authorId };
-
-                this.repository.SavePost(post);
+                
+                this.repository.SavePost(post, authorId);
 
                 return RedirectToAction("Index");
             }

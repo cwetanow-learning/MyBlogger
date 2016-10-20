@@ -14,14 +14,19 @@ namespace BlogSystem.Domain.Concrete
             this.Configuration.ProxyCreationEnabled = false;
         }
 
-        public IDbSet<Comment> Comments
-        {
-            get; set;
-        }
+        public IDbSet<Comment> Comments { get; set; }
 
         public void Save()
         {
-            this.SaveChanges();
+            try
+            {
+
+                this.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                
+            }
         }
 
         public IDbSet<Post> Posts

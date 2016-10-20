@@ -127,6 +127,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DomainTests\RepositoryTests\CommentRepositoryTests\DeleteCommentTests.cs" />
     <Compile Include="DomainTests\RepositoryTests\ConstructorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\BlogControllerTests\CreateTests.cs" />
@@ -160,9 +161,7 @@
       <Name>BlogSystem.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DomainTests\RepositoryTests\CommentRepositoryTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

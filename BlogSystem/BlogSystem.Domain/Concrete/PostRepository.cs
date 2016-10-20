@@ -62,9 +62,9 @@ namespace BlogSystem.Domain.Concrete
             return postToDelete;
         }
 
-        public void SavePost(Post post)
+        public void SavePost(Post post, string authorId)
         {
-            post.Author = this.GetUserById(post.Author.Id);
+            post.Author = this.GetUserById(authorId);
 
             if (post.PostId == GlobalConstants.IdOfEntityNotInDB)
             {

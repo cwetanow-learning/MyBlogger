@@ -12,7 +12,7 @@ namespace BlogSystem.Domain.Contracts
     {
         IEnumerable<IPost> Posts { get; }
 
-        void SavePost(Post post);
+        void SavePost(Post post, string authorId);
 
         IPost DeletePost(int postId);
 
