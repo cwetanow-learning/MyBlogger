@@ -38,9 +38,9 @@ namespace BlogSystem.Domain.Concrete
         public void WriteComment(Comment comment, int postId, string authorId)
         {
             var post = this.GetPostById(postId);
-            var author = this.GetUserById(authorId);
-
             comment.Post = post;
+
+            var author = this.GetUserById(authorId);
             comment.Author = author;
 
             this.context.Comments.Add(comment);
