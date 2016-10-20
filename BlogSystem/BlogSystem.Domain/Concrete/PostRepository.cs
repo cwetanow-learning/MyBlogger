@@ -102,6 +102,5 @@ namespace BlogSystem.Domain.Concrete
 
             this.SaveChanges();
         }
-
     }
 }
